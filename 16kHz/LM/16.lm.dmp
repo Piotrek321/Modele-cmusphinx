@@ -1,0 +1,812 @@
+#############################################################################
+## Copyright (c) 1996, Carnegie Mellon University, Cambridge University,
+## Ronald Rosenfeld and Philip Clarkson
+## Version 3, Copyright (c) 2006, Carnegie Mellon University 
+## Contributors includes Wen Xu, Ananlada Chotimongkol, 
+## David Huggins-Daines, Arthur Chan and Alan Black 
+#############################################################################
+=============================================================================
+===============  This file was produced by the CMU-Cambridge  ===============
+===============     Statistical Language Modeling Toolkit     ===============
+=============================================================================
+This is a 3-gram language model, based on a vocabulary of 92 words,
+  which begins "</s>", "<s>", "buzię"...
+This is a CLOSED-vocabulary model
+  (OOVs eliminated from training data and are forbidden in test data)
+Good-Turing discounting was applied.
+1-gram frequency of frequency : 30 
+2-gram frequency of frequency : 122 44 2 41 1 1 2 
+3-gram frequency of frequency : 289 84 2 22 1 1 2 
+1-gram discounting ratios : 
+2-gram discounting ratios : 0.71 0.02 
+3-gram discounting ratios : 0.57 0.02 
+This file is in the ARPA-standard format introduced by Doug Paul.
+
+p(wd3|wd1,wd2)= if(trigram exists)           p_3(wd1,wd2,wd3)
+                else if(bigram w1,w2 exists) bo_wt_2(w1,w2)*p(wd3|wd2)
+                else                         p(wd3|w2)
+
+p(wd2|wd1)= if(bigram exists) p_2(wd1,wd2)
+            else              bo_wt_1(wd1)*p_1(wd2)
+
+All probs and back-off weights (bo_wt) are given in log10 form.
+
+Data formats:
+
+Beginning of data mark: \data\
+ngram 1=nr            # number of 1-grams
+ngram 2=nr            # number of 2-grams
+ngram 3=nr            # number of 3-grams
+
+\1-grams:
+p_1     wd_1 bo_wt_1
+\2-grams:
+p_2     wd_1 wd_2 bo_wt_2
+\3-grams:
+p_3     wd_1 wd_2 wd_3 
+
+end of data mark: \end\
+
+\data\
+ngram 1=92
+ngram 2=236
+ngram 3=423
+
+\1-grams:
+-0.7267 </s>	-2.1422
+-0.7241 <s>	-1.7528
+-2.0540 buzię	-0.9097
+-2.9571 ciemniej	-0.4427
+-2.9571 ciemnoniebieski	-0.4427
+-1.9571 ciemnoniebieskie	-0.7420
+-2.9571 ciszej	-0.4427
+-2.6561 coś	0.0815
+-1.9571 czerwone	-0.7420
+-2.9571 czerwony	-0.4427
+-2.9571 czternaście	-0.4427
+-2.9571 cztery	-0.4427
+-1.9571 diod	-0.6127
+-1.4008 diody	-1.4895
+-2.0540 dodać	-0.5286
+-2.6561 dwa	-0.4380
+-2.9571 dwadzieścia	-0.5291
+-2.9571 dwanaście	-0.4427
+-2.9571 dziesięć	-0.4427
+-2.9571 dziewięć	-0.5291
+-1.9571 fioletowe	-0.7420
+-2.9571 fioletowy	-0.4427
+-2.6561 graj	-0.0078
+-2.9571 głośniej	-0.4427
+-2.0540 ile	-0.9961
+-2.6561 intensywność	-0.0068
+-2.9571 jasnoniebieski	-0.4427
+-1.9571 jasnoniebieskie	-0.7420
+-2.1790 jasność	-0.3933
+-2.9571 jaśniej	-0.4427
+-2.9571 jedenaście	-0.5291
+-2.0540 jest	-0.5286
+-2.6561 klocka	0.0815
+-2.6561 klocki	0.0815
+-2.0540 kolor	-0.9952
+-2.6561 kostki	0.0815
+-1.3889 kostko	-0.7518
+-2.6561 kostkę	0.0815
+-2.9571 maksymalne	-0.5296
+-2.9571 minimalne	-0.5296
+-2.6561 moc	-0.0068
+-2.0540 na	-0.5291
+-2.9571 niebieski	-0.4427
+-1.9571 niebieskie	-0.7420
+-2.9571 osiem	-0.4427
+-2.9571 pięć	-0.5291
+-2.3551 pokaż	-0.0049
+-1.9571 pomarańczowe	-0.7420
+-2.9571 pomarańczowy	-0.4427
+-2.6561 pomoc	0.0815
+-2.6561 poruszaj	-0.0059
+-2.6561 przedstaw	-0.0059
+-1.7810 robocie	-0.1399
+-2.6561 robota	0.0815
+-2.3551 roboty	-0.6879
+-2.6561 rękaw	0.0815
+-1.7019 rękawie	-1.2428
+-2.9571 siedem	-0.5291
+-2.1790 się	-1.2789
+-2.3551 smutną	-0.7743
+-2.9571 sto	-0.4427
+-2.6561 stój	-0.4338
+-2.9571 sześć	-0.4427
+-2.0540 to	-0.9504
+-2.9571 trzy	-0.5291
+-2.9571 trzynaście	-0.5291
+-2.3551 wesołą	-0.7743
+-2.9571 wezwij	-0.5320
+-2.1120 wibracje	-0.8640
+-2.3551 wibracji	-0.6879
+-2.6561 wstań	0.0815
+-1.8779 wszystkie	-0.5058
+-1.7019 wyłącz	-0.3735
+-2.3551 wyświetl	-0.0049
+-1.6561 włącz	-0.3815
+-2.6561 zamiaucz	0.0815
+-1.4008 zapal	-1.5217
+-2.6561 zaszczekaj	0.0815
+-2.6561 zatańcz	0.0815
+-2.6561 zatrzymaj	-0.0059
+-2.9571 zawołaj	-0.5320
+-1.4008 zgaś	-1.5217
+-1.9571 zielone	-0.7420
+-2.9571 zielony	-0.4427
+-2.0540 zmień	-0.9961
+-2.1790 zmniejsz	-0.8258
+-2.1120 zwiększ	-0.4310
+-1.7267 światełka	-1.1885
+-1.4008 światła	-1.4895
+-2.3551 świecenia	0.0874
+-1.9571 żółte	-0.7420
+-2.9571 żółty	-0.4427
+
+\2-grams:
+-0.0025 </s> <s> 0.1716
+-2.3887 <s> ciemniej 0.1640
+-2.3887 <s> ciszej 0.1640
+-2.3887 <s> głośniej 0.1640
+-2.3887 <s> jaśniej 0.1640
+-0.6698 <s> kostko 0.0763
+-1.1241 <s> robocie 0.0211
+-0.9593 <s> rękawie 0.0000
+-2.3887 <s> stój -0.1796
+-2.3887 <s> wezwij 0.1640
+-0.9828 <s> wyłącz 0.1222
+-0.9370 <s> włącz 0.1257
+-0.9828 <s> zapal 1.5615
+-2.3887 <s> zatrzymaj -0.3602
+-2.3887 <s> zawołaj 0.1640
+-0.9828 <s> zgaś 1.5615
+-1.2838 <s> zmień 0.0458
+-1.4599 <s> zmniejsz 0.1640
+-1.3929 <s> zwiększ 0.0451
+-0.0458 buzię </s> 1.2788
+-0.1506 ciemniej </s> 1.8640
+-0.1506 ciemnoniebieski </s> 1.8640
+-0.3802 ciemnoniebieskie diody 0.8808
+-2.4775 ciemnoniebieskie światełka 1.2721
+-0.3802 ciemnoniebieskie światła 0.8808
+-0.1506 ciszej </s> 1.8640
+-1.6993 coś </s> 2.2263
+-0.3802 czerwone diody 0.8808
+-2.4775 czerwone światełka 1.2721
+-0.3802 czerwone światła 0.8808
+-0.1506 czerwony </s> 1.8640
+-0.1506 czternaście </s> 1.8640
+-0.1506 cztery </s> 1.8640
+-2.3983 diod </s> 2.2263
+-0.0969 diod na 0.1640
+-0.0116 diody </s> 0.6648
+-1.0537 dodać czternaście 0.1640
+-1.0537 dodać cztery 0.1640
+-1.0537 dodać dwa -0.1796
+-1.0537 dodać dwanaście 0.1640
+-1.0537 dodać dziesięć 0.1640
+-1.0537 dodać osiem 0.1640
+-1.0537 dodać sto 0.1640
+-1.0537 dodać sześć 0.1640
+-0.4517 dwa </s> 1.8640
+-0.4517 dwa dodać -0.3288
+-0.1506 dwadzieścia dodać -0.3288
+-0.1506 dwanaście </s> 1.8640
+-0.1506 dziesięć </s> 1.8640
+-0.1506 dziewięć dodać -0.3288
+-0.3802 fioletowe diody 0.8808
+-2.4775 fioletowe światełka 1.2721
+-0.3802 fioletowe światła 0.8808
+-0.1506 fioletowy </s> 1.8640
+-1.6993 graj coś 0.0021
+-0.1506 głośniej </s> 1.8640
+-0.0458 ile to 0.0000
+-1.6993 intensywność wibracji 0.7715
+-0.1506 jasnoniebieski </s> 1.8640
+-0.3802 jasnoniebieskie diody 0.8808
+-2.4775 jasnoniebieskie światełka 1.2721
+-0.3802 jasnoniebieskie światła 0.8808
+-2.1764 jasność </s> 2.2263
+-0.1761 jasność świecenia 0.0021
+-0.1506 jaśniej </s> 1.8640
+-0.1506 jedenaście dodać -0.3288
+-1.0537 jest dwa -0.1796
+-1.0537 jest dwadzieścia 0.1640
+-1.0537 jest dziewięć 0.1640
+-1.0537 jest jedenaście 0.1640
+-1.0537 jest pięć 0.1640
+-1.0537 jest siedem 0.1640
+-1.0537 jest trzy 0.1640
+-1.0537 jest trzynaście 0.1640
+-1.6993 klocka </s> 2.2263
+-1.6993 klocki </s> 2.2263
+-0.0458 kolor diod -0.2553
+-1.6993 kostki </s> 2.2263
+-1.7304 kostko graj -0.3602
+-0.6255 kostko ile 0.0458
+-2.9781 kostko pokaż -0.3602
+-1.7304 kostko poruszaj -0.3602
+-1.7304 kostko przedstaw -0.3602
+-1.7304 kostko wstań -0.3602
+-2.9781 kostko wyświetl -0.3602
+-1.7304 kostko zamiaucz -0.3602
+-0.6255 kostko zapal 1.1992
+-1.7304 kostko zaszczekaj -0.3602
+-1.7304 kostko zatańcz -0.3602
+-0.6255 kostko zgaś 1.1992
+-1.6993 kostkę </s> 2.2263
+-0.1506 maksymalne wibracje 0.5852
+-0.1506 minimalne wibracje 0.5852
+-1.6993 moc wibracji 0.7715
+-1.0537 na ciemnoniebieski 0.1640
+-1.0537 na czerwony 0.1640
+-1.0537 na fioletowy 0.1640
+-1.0537 na jasnoniebieski 0.1640
+-1.0537 na niebieski 0.1640
+-1.0537 na pomarańczowy 0.1640
+-1.0537 na zielony 0.1640
+-1.0537 na żółty 0.1640
+-0.1506 niebieski </s> 1.8640
+-0.3802 niebieskie diody 0.8808
+-2.4775 niebieskie światełka 1.2721
+-0.3802 niebieskie światła 0.8808
+-0.1506 osiem </s> 1.8640
+-0.1506 pięć dodać -0.3288
+-2.0003 pokaż smutną 0.7715
+-2.0003 pokaż wesołą 0.7715
+-0.3802 pomarańczowe diody 0.8808
+-2.4775 pomarańczowe światełka 1.2721
+-0.3802 pomarańczowe światła 0.8808
+-0.1506 pomarańczowy </s> 1.8640
+-1.6993 pomoc </s> 2.2263
+-1.6993 poruszaj się 0.8384
+-1.6993 przedstaw się 0.8384
+-2.5744 robocie </s> 2.2263
+-1.3267 robocie graj -0.3602
+-2.5744 robocie pokaż -0.3602
+-1.3267 robocie poruszaj -0.3602
+-1.3267 robocie przedstaw -0.3602
+-1.3267 robocie stój -0.1796
+-1.3267 robocie wstań -0.3602
+-2.5744 robocie wyświetl -0.3602
+-1.3267 robocie zamiaucz -0.3602
+-1.3267 robocie zaszczekaj -0.3602
+-1.3267 robocie zatańcz -0.3602
+-1.3267 robocie zatrzymaj -0.3602
+-1.6993 robota </s> 2.2263
+-0.0792 roboty </s> 1.5340
+-1.6993 rękaw </s> 2.2263
+-0.3245 rękawie zapal 1.1992
+-0.3245 rękawie zgaś 1.1992
+-0.1506 siedem dodać -0.3288
+-0.0669 się </s> 1.4548
+-0.9957 się robocie -0.3678
+-0.0792 smutną buzię 0.3010
+-0.1506 sto </s> 1.8640
+-0.4517 stój </s> 1.8640
+-0.4517 stój robocie -0.3678
+-0.1506 sześć </s> 1.8640
+-0.0512 to jest 0.1640
+-0.1506 trzy dodać -0.3288
+-0.1506 trzynaście dodać -0.3288
+-0.0792 wesołą buzię 0.3010
+-0.1506 wezwij pomoc -0.3602
+-0.0512 wibracje </s> 1.3299
+-0.0792 wibracji </s> 1.5340
+-1.6993 wstań </s> 2.2263
+-0.4472 wszystkie diody 0.8808
+-2.5444 wszystkie roboty 0.7715
+-2.5444 wszystkie światełka 1.2721
+-0.4472 wszystkie światła 0.8808
+-1.4059 wyłącz ciemnoniebieskie -0.1349
+-1.4059 wyłącz czerwone -0.1349
+-1.4059 wyłącz fioletowe -0.1349
+-1.4059 wyłącz jasnoniebieskie -0.1349
+-1.4059 wyłącz klocka -0.3602
+-1.4059 wyłącz klocki -0.3602
+-1.4059 wyłącz kostki -0.3602
+-1.4059 wyłącz kostkę -0.3602
+-1.4059 wyłącz niebieskie -0.1349
+-1.4059 wyłącz pomarańczowe -0.1349
+-1.4059 wyłącz robota -0.3602
+-1.4059 wyłącz roboty 0.4092
+-1.4059 wyłącz rękaw -0.3602
+-1.4059 wyłącz wibracje 0.5852
+-2.6536 wyłącz wszystkie -0.1752
+-1.4059 wyłącz zielone -0.1349
+-1.4059 wyłącz żółte -0.1349
+-2.0003 wyświetl smutną 0.7715
+-2.0003 wyświetl wesołą 0.7715
+-1.4517 włącz ciemnoniebieskie -0.1349
+-1.4517 włącz czerwone -0.1349
+-1.4517 włącz fioletowe -0.1349
+-1.4517 włącz jasnoniebieskie -0.1349
+-1.4517 włącz klocka -0.3602
+-1.4517 włącz klocki -0.3602
+-1.4517 włącz kostki -0.3602
+-1.4517 włącz kostkę -0.3602
+-1.4517 włącz maksymalne 0.1640
+-1.4517 włącz minimalne 0.1640
+-1.4517 włącz niebieskie -0.1349
+-1.4517 włącz pomarańczowe -0.1349
+-1.4517 włącz robota -0.3602
+-1.4517 włącz roboty 0.4092
+-1.4517 włącz rękaw -0.3602
+-1.4517 włącz wibracje 0.5852
+-2.6993 włącz wszystkie -0.1752
+-1.4517 włącz zielone -0.1349
+-1.4517 włącz żółte -0.1349
+-1.6993 zamiaucz </s> 2.2263
+-0.9661 zapal ciemnoniebieskie 0.6358
+-0.9661 zapal czerwone 0.6358
+-0.9661 zapal fioletowe 0.6358
+-0.9661 zapal jasnoniebieskie 0.6358
+-0.9661 zapal niebieskie 0.6358
+-0.9661 zapal pomarańczowe 0.6358
+-0.9661 zapal wszystkie 0.3973
+-0.9661 zapal zielone 0.6358
+-0.9661 zapal żółte 0.6358
+-1.6993 zaszczekaj </s> 2.2263
+-1.6993 zatańcz </s> 2.2263
+-1.6993 zatrzymaj się 1.0091
+-0.1506 zawołaj pomoc -0.3602
+-0.9661 zgaś ciemnoniebieskie 0.6358
+-0.9661 zgaś czerwone 0.6358
+-0.9661 zgaś fioletowe 0.6358
+-0.9661 zgaś jasnoniebieskie 0.6358
+-0.9661 zgaś niebieskie 0.6358
+-0.9661 zgaś pomarańczowe 0.6358
+-0.9661 zgaś wszystkie 0.3973
+-0.9661 zgaś zielone 0.6358
+-0.9661 zgaś żółte 0.6358
+-0.3802 zielone diody 0.8808
+-2.4775 zielone światełka 1.2721
+-0.3802 zielone światła 0.8808
+-0.1506 zielony </s> 1.8640
+-0.0458 zmień kolor 0.0458
+-0.9288 zmniejsz intensywność -0.3602
+-0.3010 zmniejsz jasność 0.3884
+-0.9288 zmniejsz moc -0.3602
+-0.9288 zmniejsz wibracje 0.5852
+-0.9957 zwiększ intensywność -0.3602
+-0.3680 zwiększ jasność 0.3884
+-0.9957 zwiększ moc -0.3602
+-2.2434 zwiększ wibracje 0.9476
+-0.0235 światełka </s> 0.9777
+-0.0116 światła </s> 0.6648
+-2.0003 świecenia </s> 2.2263
+-2.0003 świecenia diod -0.0049
+-0.3802 żółte diody 0.8808
+-2.4775 żółte światełka 1.2721
+-0.3802 żółte światła 0.8808
+-0.1506 żółty </s> 1.8640
+
+\3-grams:
+-2.4727 </s> <s> ciemniej 
+-2.4727 </s> <s> ciszej 
+-2.4727 </s> <s> głośniej 
+-2.4727 </s> <s> jaśniej 
+-0.6622 </s> <s> kostko 
+-1.1165 </s> <s> robocie 
+-0.9752 </s> <s> rękawie 
+-2.4727 </s> <s> stój 
+-2.4727 </s> <s> wezwij 
+-0.9752 </s> <s> wyłącz 
+-0.9294 </s> <s> włącz 
+-1.0000 </s> <s> zapal 
+-2.4727 </s> <s> zatrzymaj 
+-2.4727 </s> <s> zawołaj 
+-0.9752 </s> <s> zgaś 
+-1.3274 </s> <s> zmień 
+-1.4523 </s> <s> zmniejsz 
+-1.3854 </s> <s> zwiększ 
+-0.2423 <s> ciemniej </s> 
+-0.2423 <s> ciszej </s> 
+-0.2423 <s> głośniej </s> 
+-0.2423 <s> jaśniej </s> 
+-1.8105 <s> kostko graj 
+-0.6651 <s> kostko ile 
+-3.0833 <s> kostko pokaż 
+-1.8105 <s> kostko poruszaj 
+-1.8105 <s> kostko przedstaw 
+-1.8105 <s> kostko wstań 
+-3.0833 <s> kostko wyświetl 
+-1.8105 <s> kostko zamiaucz 
+-0.6140 <s> kostko zapal 
+-1.8105 <s> kostko zaszczekaj 
+-1.8105 <s> kostko zatańcz 
+-0.6140 <s> kostko zgaś 
+-1.3562 <s> robocie graj 
+-2.6291 <s> robocie pokaż 
+-1.3562 <s> robocie poruszaj 
+-1.3562 <s> robocie przedstaw 
+-1.3562 <s> robocie stój 
+-1.3562 <s> robocie wstań 
+-2.6291 <s> robocie wyświetl 
+-1.3562 <s> robocie zamiaucz 
+-1.3562 <s> robocie zaszczekaj 
+-1.3562 <s> robocie zatańcz 
+-1.3562 <s> robocie zatrzymaj 
+-0.3245 <s> rękawie zapal 
+-0.3245 <s> rękawie zgaś 
+-0.2423 <s> stój robocie 
+-0.2423 <s> wezwij pomoc 
+-1.4975 <s> wyłącz ciemnoniebieskie 
+-1.4975 <s> wyłącz czerwone 
+-1.4975 <s> wyłącz fioletowe 
+-1.4975 <s> wyłącz jasnoniebieskie 
+-1.4975 <s> wyłącz klocka 
+-1.4975 <s> wyłącz klocki 
+-1.4975 <s> wyłącz kostki 
+-1.4975 <s> wyłącz kostkę 
+-1.4975 <s> wyłącz niebieskie 
+-1.4975 <s> wyłącz pomarańczowe 
+-1.4975 <s> wyłącz robota 
+-1.4975 <s> wyłącz roboty 
+-1.4975 <s> wyłącz rękaw 
+-1.4975 <s> wyłącz wibracje 
+-2.7704 <s> wyłącz wszystkie 
+-1.4975 <s> wyłącz zielone 
+-1.4975 <s> wyłącz żółte 
+-1.5433 <s> włącz ciemnoniebieskie 
+-1.5433 <s> włącz czerwone 
+-1.5433 <s> włącz fioletowe 
+-1.5433 <s> włącz jasnoniebieskie 
+-1.5433 <s> włącz klocka 
+-1.5433 <s> włącz klocki 
+-1.5433 <s> włącz kostki 
+-1.5433 <s> włącz kostkę 
+-1.5433 <s> włącz maksymalne 
+-1.5433 <s> włącz minimalne 
+-1.5433 <s> włącz niebieskie 
+-1.5433 <s> włącz pomarańczowe 
+-1.5433 <s> włącz robota 
+-1.5433 <s> włącz roboty 
+-1.5433 <s> włącz rękaw 
+-1.5433 <s> włącz wibracje 
+-2.8162 <s> włącz wszystkie 
+-1.5433 <s> włącz zielone 
+-1.5433 <s> włącz żółte 
+-2.7704 <s> zapal ciemnoniebieskie 
+-2.7704 <s> zapal czerwone 
+-2.7704 <s> zapal fioletowe 
+-2.7704 <s> zapal jasnoniebieskie 
+-2.7704 <s> zapal niebieskie 
+-2.7704 <s> zapal pomarańczowe 
+-2.7704 <s> zapal wszystkie 
+-2.7704 <s> zapal zielone 
+-2.7704 <s> zapal żółte 
+-0.2423 <s> zatrzymaj się 
+-0.2423 <s> zawołaj pomoc 
+-2.7704 <s> zgaś ciemnoniebieskie 
+-2.7704 <s> zgaś czerwone 
+-2.7704 <s> zgaś fioletowe 
+-2.7704 <s> zgaś jasnoniebieskie 
+-2.7704 <s> zgaś niebieskie 
+-2.7704 <s> zgaś pomarańczowe 
+-2.7704 <s> zgaś wszystkie 
+-2.7704 <s> zgaś zielone 
+-2.7704 <s> zgaś żółte 
+-0.0512 <s> zmień kolor 
+-1.0204 <s> zmniejsz intensywność 
+-0.3010 <s> zmniejsz jasność 
+-1.0204 <s> zmniejsz moc 
+-1.0204 <s> zmniejsz wibracje 
+-1.0874 <s> zwiększ intensywność 
+-0.3680 <s> zwiększ jasność 
+-1.0874 <s> zwiększ moc 
+-2.3602 <s> zwiększ wibracje 
+-0.0512 buzię </s> <s> 
+-0.2423 ciemniej </s> <s> 
+-0.2423 ciemnoniebieski </s> <s> 
+-0.0969 ciemnoniebieskie diody </s> 
+-1.8162 ciemnoniebieskie światełka </s> 
+-0.0969 ciemnoniebieskie światła </s> 
+-0.2423 ciszej </s> <s> 
+-1.8162 coś </s> <s> 
+-0.0969 czerwone diody </s> 
+-1.8162 czerwone światełka </s> 
+-0.0969 czerwone światła </s> 
+-0.2423 czerwony </s> <s> 
+-0.2423 czternaście </s> <s> 
+-0.2423 cztery </s> <s> 
+-1.8162 diod </s> <s> 
+-1.1454 diod na ciemnoniebieski 
+-1.1454 diod na czerwony 
+-1.1454 diod na fioletowy 
+-1.1454 diod na jasnoniebieski 
+-1.1454 diod na niebieski 
+-1.1454 diod na pomarańczowy 
+-1.1454 diod na zielony 
+-1.1454 diod na żółty 
+-0.0119 diody </s> <s> 
+-0.2423 dodać czternaście </s> 
+-0.2423 dodać cztery </s> 
+-0.2423 dodać dwa </s> 
+-0.2423 dodać dwanaście </s> 
+-0.2423 dodać dziesięć </s> 
+-0.2423 dodać osiem </s> 
+-0.2423 dodać sto </s> 
+-0.2423 dodać sześć </s> 
+-0.2423 dwa </s> <s> 
+-0.2423 dwa dodać dwa 
+-0.2423 dwadzieścia dodać sto 
+-0.2423 dwanaście </s> <s> 
+-0.2423 dziesięć </s> <s> 
+-0.2423 dziewięć dodać dziesięć 
+-0.0969 fioletowe diody </s> 
+-1.8162 fioletowe światełka </s> 
+-0.0969 fioletowe światła </s> 
+-0.2423 fioletowy </s> <s> 
+-1.8162 graj coś </s> 
+-0.2423 głośniej </s> <s> 
+-0.0512 ile to jest 
+-1.8162 intensywność wibracji </s> 
+-0.2423 jasnoniebieski </s> <s> 
+-0.0969 jasnoniebieskie diody </s> 
+-1.8162 jasnoniebieskie światełka </s> 
+-0.0969 jasnoniebieskie światła </s> 
+-1.8162 jasność </s> <s> 
+-2.1172 jasność świecenia </s> 
+-2.1172 jasność świecenia diod 
+-0.2423 jaśniej </s> <s> 
+-0.2423 jedenaście dodać dwanaście 
+-0.2423 jest dwa dodać 
+-0.2423 jest dwadzieścia dodać 
+-0.2423 jest dziewięć dodać 
+-0.2423 jest jedenaście dodać 
+-0.2423 jest pięć dodać 
+-0.2423 jest siedem dodać 
+-0.2423 jest trzy dodać 
+-0.2423 jest trzynaście dodać 
+-1.8162 klocka </s> <s> 
+-1.8162 klocki </s> <s> 
+-0.0512 kolor diod na 
+-1.8162 kostki </s> <s> 
+-0.2423 kostko graj coś 
+-0.0512 kostko ile to 
+-0.5433 kostko pokaż smutną 
+-0.5433 kostko pokaż wesołą 
+-0.2423 kostko poruszaj się 
+-0.2423 kostko przedstaw się 
+-0.2423 kostko wstań </s> 
+-0.5433 kostko wyświetl smutną 
+-0.5433 kostko wyświetl wesołą 
+-0.2423 kostko zamiaucz </s> 
+-1.1965 kostko zapal ciemnoniebieskie 
+-1.1965 kostko zapal czerwone 
+-1.1965 kostko zapal fioletowe 
+-1.1965 kostko zapal jasnoniebieskie 
+-1.1965 kostko zapal niebieskie 
+-1.1965 kostko zapal pomarańczowe 
+-1.1965 kostko zapal wszystkie 
+-1.1965 kostko zapal zielone 
+-1.1965 kostko zapal żółte 
+-0.2423 kostko zaszczekaj </s> 
+-0.2423 kostko zatańcz </s> 
+-1.1965 kostko zgaś ciemnoniebieskie 
+-1.1965 kostko zgaś czerwone 
+-1.1965 kostko zgaś fioletowe 
+-1.1965 kostko zgaś jasnoniebieskie 
+-1.1965 kostko zgaś niebieskie 
+-1.1965 kostko zgaś pomarańczowe 
+-1.1965 kostko zgaś wszystkie 
+-1.1965 kostko zgaś zielone 
+-1.1965 kostko zgaś żółte 
+-1.8162 kostkę </s> <s> 
+-0.2423 maksymalne wibracje </s> 
+-0.2423 minimalne wibracje </s> 
+-1.8162 moc wibracji </s> 
+-0.2423 na ciemnoniebieski </s> 
+-0.2423 na czerwony </s> 
+-0.2423 na fioletowy </s> 
+-0.2423 na jasnoniebieski </s> 
+-0.2423 na niebieski </s> 
+-0.2423 na pomarańczowy </s> 
+-0.2423 na zielony </s> 
+-0.2423 na żółty </s> 
+-0.2423 niebieski </s> <s> 
+-0.0969 niebieskie diody </s> 
+-1.8162 niebieskie światełka </s> 
+-0.0969 niebieskie światła </s> 
+-0.2423 osiem </s> <s> 
+-0.2423 pięć dodać sześć 
+-1.8162 pokaż smutną buzię 
+-1.8162 pokaż wesołą buzię 
+-0.0969 pomarańczowe diody </s> 
+-1.8162 pomarańczowe światełka </s> 
+-0.0969 pomarańczowe światła </s> 
+-0.2423 pomarańczowy </s> <s> 
+-1.8162 pomoc </s> <s> 
+-1.8162 poruszaj się </s> 
+-1.8162 przedstaw się </s> 
+-1.8162 robocie </s> <s> 
+-0.2423 robocie graj coś 
+-0.5433 robocie pokaż smutną 
+-0.5433 robocie pokaż wesołą 
+-0.2423 robocie poruszaj się 
+-0.2423 robocie przedstaw się 
+-0.2423 robocie stój </s> 
+-0.2423 robocie wstań </s> 
+-0.5433 robocie wyświetl smutną 
+-0.5433 robocie wyświetl wesołą 
+-0.2423 robocie zamiaucz </s> 
+-0.2423 robocie zaszczekaj </s> 
+-0.2423 robocie zatańcz </s> 
+-0.2423 robocie zatrzymaj się 
+-1.8162 robota </s> <s> 
+-0.0969 roboty </s> <s> 
+-1.8162 rękaw </s> <s> 
+-1.1965 rękawie zapal ciemnoniebieskie 
+-1.1965 rękawie zapal czerwone 
+-1.1965 rękawie zapal fioletowe 
+-1.1965 rękawie zapal jasnoniebieskie 
+-1.1965 rękawie zapal niebieskie 
+-1.1965 rękawie zapal pomarańczowe 
+-1.1965 rękawie zapal wszystkie 
+-1.1965 rękawie zapal zielone 
+-1.1965 rękawie zapal żółte 
+-1.1965 rękawie zgaś ciemnoniebieskie 
+-1.1965 rękawie zgaś czerwone 
+-1.1965 rękawie zgaś fioletowe 
+-1.1965 rękawie zgaś jasnoniebieskie 
+-1.1965 rękawie zgaś niebieskie 
+-1.1965 rękawie zgaś pomarańczowe 
+-1.1965 rękawie zgaś wszystkie 
+-1.1965 rękawie zgaś zielone 
+-1.1965 rękawie zgaś żółte 
+-0.2423 siedem dodać osiem 
+-0.0792 się </s> <s> 
+-0.2423 się robocie </s> 
+-0.0969 smutną buzię </s> 
+-0.2423 sto </s> <s> 
+-0.2423 stój </s> <s> 
+-0.2423 stój robocie </s> 
+-0.2423 sześć </s> <s> 
+-1.1454 to jest dwa 
+-1.1454 to jest dwadzieścia 
+-1.1454 to jest dziewięć 
+-1.1454 to jest jedenaście 
+-1.1454 to jest pięć 
+-1.1454 to jest siedem 
+-1.1454 to jest trzy 
+-1.1454 to jest trzynaście 
+-0.2423 trzy dodać cztery 
+-0.2423 trzynaście dodać czternaście 
+-0.0969 wesołą buzię </s> 
+-0.2423 wezwij pomoc </s> 
+-0.0580 wibracje </s> <s> 
+-0.0969 wibracji </s> <s> 
+-1.8162 wstań </s> <s> 
+-0.0969 wszystkie diody </s> 
+-1.8162 wszystkie roboty </s> 
+-1.8162 wszystkie światełka </s> 
+-0.0969 wszystkie światła </s> 
+-0.2423 wyłącz ciemnoniebieskie diody 
+-0.2423 wyłącz czerwone diody 
+-0.2423 wyłącz fioletowe diody 
+-0.2423 wyłącz jasnoniebieskie diody 
+-0.2423 wyłącz klocka </s> 
+-0.2423 wyłącz klocki </s> 
+-0.2423 wyłącz kostki </s> 
+-0.2423 wyłącz kostkę </s> 
+-0.2423 wyłącz niebieskie diody 
+-0.2423 wyłącz pomarańczowe diody 
+-0.2423 wyłącz robota </s> 
+-0.2423 wyłącz roboty </s> 
+-0.2423 wyłącz rękaw </s> 
+-0.2423 wyłącz wibracje </s> 
+-0.5433 wyłącz wszystkie diody 
+-0.5433 wyłącz wszystkie roboty 
+-0.2423 wyłącz zielone diody 
+-0.2423 wyłącz żółte diody 
+-1.8162 wyświetl smutną buzię 
+-1.8162 wyświetl wesołą buzię 
+-0.2423 włącz ciemnoniebieskie diody 
+-0.2423 włącz czerwone diody 
+-0.2423 włącz fioletowe diody 
+-0.2423 włącz jasnoniebieskie diody 
+-0.2423 włącz klocka </s> 
+-0.2423 włącz klocki </s> 
+-0.2423 włącz kostki </s> 
+-0.2423 włącz kostkę </s> 
+-0.2423 włącz maksymalne wibracje 
+-0.2423 włącz minimalne wibracje 
+-0.2423 włącz niebieskie diody 
+-0.2423 włącz pomarańczowe diody 
+-0.2423 włącz robota </s> 
+-0.2423 włącz roboty </s> 
+-0.2423 włącz rękaw </s> 
+-0.2423 włącz wibracje </s> 
+-0.5433 włącz wszystkie diody 
+-0.5433 włącz wszystkie roboty 
+-0.2423 włącz zielone diody 
+-0.2423 włącz żółte diody 
+-1.8162 zamiaucz </s> <s> 
+-0.8443 zapal ciemnoniebieskie diody 
+-0.8443 zapal ciemnoniebieskie światełka 
+-2.1172 zapal ciemnoniebieskie światła 
+-0.8443 zapal czerwone diody 
+-0.8443 zapal czerwone światełka 
+-2.1172 zapal czerwone światła 
+-0.8443 zapal fioletowe diody 
+-0.8443 zapal fioletowe światełka 
+-2.1172 zapal fioletowe światła 
+-0.8443 zapal jasnoniebieskie diody 
+-0.8443 zapal jasnoniebieskie światełka 
+-2.1172 zapal jasnoniebieskie światła 
+-0.8443 zapal niebieskie diody 
+-0.8443 zapal niebieskie światełka 
+-2.1172 zapal niebieskie światła 
+-0.8443 zapal pomarańczowe diody 
+-0.8443 zapal pomarańczowe światełka 
+-2.1172 zapal pomarańczowe światła 
+-0.8443 zapal wszystkie diody 
+-0.8443 zapal wszystkie światełka 
+-2.1172 zapal wszystkie światła 
+-0.8443 zapal zielone diody 
+-0.8443 zapal zielone światełka 
+-2.1172 zapal zielone światła 
+-0.8443 zapal żółte diody 
+-0.8443 zapal żółte światełka 
+-2.1172 zapal żółte światła 
+-1.8162 zaszczekaj </s> <s> 
+-1.8162 zatańcz </s> <s> 
+-0.5433 zatrzymaj się </s> 
+-0.5433 zatrzymaj się robocie 
+-0.2423 zawołaj pomoc </s> 
+-0.8443 zgaś ciemnoniebieskie diody 
+-0.8443 zgaś ciemnoniebieskie światełka 
+-2.1172 zgaś ciemnoniebieskie światła 
+-0.8443 zgaś czerwone diody 
+-0.8443 zgaś czerwone światełka 
+-2.1172 zgaś czerwone światła 
+-0.8443 zgaś fioletowe diody 
+-0.8443 zgaś fioletowe światełka 
+-2.1172 zgaś fioletowe światła 
+-0.8443 zgaś jasnoniebieskie diody 
+-0.8443 zgaś jasnoniebieskie światełka 
+-2.1172 zgaś jasnoniebieskie światła 
+-0.8443 zgaś niebieskie diody 
+-0.8443 zgaś niebieskie światełka 
+-2.1172 zgaś niebieskie światła 
+-0.8443 zgaś pomarańczowe diody 
+-0.8443 zgaś pomarańczowe światełka 
+-2.1172 zgaś pomarańczowe światła 
+-0.8443 zgaś wszystkie diody 
+-0.8443 zgaś wszystkie światełka 
+-2.1172 zgaś wszystkie światła 
+-0.8443 zgaś zielone diody 
+-0.8443 zgaś zielone światełka 
+-2.1172 zgaś zielone światła 
+-0.8443 zgaś żółte diody 
+-0.8443 zgaś żółte światełka 
+-2.1172 zgaś żółte światła 
+-0.0969 zielone diody </s> 
+-1.8162 zielone światełka </s> 
+-0.0969 zielone światła </s> 
+-0.2423 zielony </s> <s> 
+-0.0512 zmień kolor diod 
+-0.2423 zmniejsz intensywność wibracji 
+-0.7194 zmniejsz jasność </s> 
+-1.9923 zmniejsz jasność świecenia 
+-0.2423 zmniejsz moc wibracji 
+-0.2423 zmniejsz wibracje </s> 
+-0.2423 zwiększ intensywność wibracji 
+-0.7194 zwiększ jasność </s> 
+-1.9923 zwiększ jasność świecenia 
+-0.2423 zwiększ moc wibracji 
+-1.8162 zwiększ wibracje </s> 
+-0.0248 światełka </s> <s> 
+-0.0119 światła </s> <s> 
+-1.8162 świecenia </s> <s> 
+-1.8162 świecenia diod </s> 
+-0.0969 żółte diody </s> 
+-1.8162 żółte światełka </s> 
+-0.0969 żółte światła </s> 
+-0.2423 żółty </s> <s> 
+
+\end\
