@@ -1,0 +1,42 @@
+sphinx_fe -argfile en-us/feat.params \
+        -samprate 8000 -c 8.fileids \
+       -di . -do . -ei wav -eo mfc -mswav yes
+
+pocketsphinx_mdef_convert -text en-us/mdef en-us/mdef.txt
+
+
+./bw  -hmmdir en-us  -moddeffn en-us/mdef.txt  -ts2cbfn .ptm.  -feat 1s_c_d_dd  -svspec 0-12/13-25/26-38  -cmn current  -agc none  -dictfn 8DicAng.dict  -ctlfn 8.fileids  -lsnfn 8.transcription  -accumdir .
+
+./mllr_solve \
+    -meanfn en-us/means \
+    -varfn en-us/variances \
+    -outmllrfn mllr_matrix -accumdir .
+
+cp -a en-us en-us-adapt
+
+./map_adapt \
+    -moddeffn en-us/mdef.txt \
+    -ts2cbfn .ptm. \
+    -meanfn en-us/means \
+    -varfn en-us/variances \
+    -mixwfn en-us/mixture_weights \
+    -tmatfn en-us/transition_matrices \
+    -accumdir . \
+    -mapmeanfn en-us-adapt/means \
+    -mapvarfn en-us-adapt/variances \
+    -mapmixwfn en-us-adapt/mixture_weights \
+    -maptmatfn en-us-adapt/transition_matrices
+
+TESTOWANIE DODAĆ  -samprate 8000  jeśli en-us
+pocketsphinx_batch \
+ -adcin yes \
+ -cepdir wav \
+ -cepext .wav \
+ -ctl 8Test.fileids \
+ -lm 8.lm.dmp \
+ -dict 8DicAng.dict \
+ -hmm en-us-adapt\
+ -hyp 8Test.hyp\
+ -samprate 8000 
+
+./word_align.pl 8Test.transcription 8Test.hyp
