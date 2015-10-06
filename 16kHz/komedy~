@@ -1,6 +1,0 @@
-text2wfreq < 16.txt | wfreq2vocab > 16.tmp.vocab
-text2idngram -vocab 16.vocab -idngram 16.idngram < 16.txt
-idngram2lm -vocab_type 0 -idngram 16.idngram -vocab \
-     16.vocab -arpa 16.lm
-
-sphinx_lm_convert -i 16.lm -o 16.lm.bin
