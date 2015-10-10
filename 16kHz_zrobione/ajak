@@ -1,0 +1,66 @@
+sphinx_fe -argfile en-us/feat.params \
+        -samprate 16000 -c 16.fileids \
+       -di . -do . -ei wav -eo mfc -mswav yes
+
+pocketsphinx_mdef_convert -text en-us/mdef en-us/mdef.txt
+
+./bw \
+ -hmmdir en-us \
+ -moddeffn en-us/mdef.txt \
+ -ts2cbfn .ptm. \
+ -feat 1s_c_d_dd \
+ -svspec 0-12/13-25/26-38 \
+ -cmn current \
+ -agc none \
+ -dictfn 16DicAng.dict \
+ -ctlfn 16.fileids \
+ -lsnfn 16.transcription \
+ -accumdir .
+
+./mllr_solve \
+    -meanfn en-us/means \
+    -varfn en-us/variances \
+    -outmllrfn mllr_matrix -accumdir .
+
+cp -a en-us en-us-adapt
+
+./map_adapt \
+    -moddeffn en-us/mdef.txt \
+    -ts2cbfn .ptm. \
+    -meanfn en-us/means \
+    -varfn en-us/variances \
+    -mixwfn en-us/mixture_weights \
+    -tmatfn en-us/transition_matrices \
+    -accumdir . \
+    -mapmeanfn en-us-adapt/means \
+    -mapvarfn en-us-adapt/variances \
+    -mapmixwfn en-us-adapt/mixture_weights \
+    -maptmatfn en-us-adapt/transition_matrices
+
+TESTOWANIE DODAĆ  -samprate 8000  jeśli en-us
+pocketsphinx_batch \
+ -adcin yes \
+ -cepdir wav \
+ -cepext .wav \
+ -ctl 16Test.fileids \
+ -lm 16.lm.dmp \
+ -dict 16DicAng.dict \
+ -hmm en-us-adapt\
+ -hyp adapation-test.hyp
+
+
+./bw \
+ -hmmdir en-us \
+ -moddeffn en-us/mdef.txt \
+ -ts2cbfn .ptm. \
+ -feat 1s_c_d_dd \
+ -svspec 0-12/13-25/26-38 \
+ -cmn current \
+ -agc none \
+ -dictfn 16DicAng.dict \
+ -ctlfn 16.fileids \
+ -lsnfn 16.transcription \
+ -accumdir .
+
+
+

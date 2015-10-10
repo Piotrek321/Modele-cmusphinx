@@ -1,0 +1,2114 @@
+#############################################################################
+## Copyright (c) 1996, Carnegie Mellon University, Cambridge University,
+## Ronald Rosenfeld and Philip Clarkson
+## Version 3, Copyright (c) 2006, Carnegie Mellon University 
+## Contributors includes Wen Xu, Ananlada Chotimongkol, 
+## David Huggins-Daines, Arthur Chan and Alan Black 
+#############################################################################
+=============================================================================
+===============  This file was produced by the CMU-Cambridge  ===============
+===============     Statistical Language Modeling Toolkit     ===============
+=============================================================================
+This is a 3-gram language model, based on a vocabulary of 289 words,
+  which begins "<s>", "</s>", "będzie"...
+This is a CLOSED-vocabulary model
+  (OOVs eliminated from training data and are forbidden in test data)
+Good-Turing discounting was applied.
+1-gram frequency of frequency : 40 
+2-gram frequency of frequency : 304 41 91 110 52 19 127 
+3-gram frequency of frequency : 427 89 122 153 35 28 118 
+1-gram discounting ratios : 0.33 
+2-gram discounting ratios : 0.00 
+3-gram discounting ratios : 0.00 
+This file is in the ARPA-standard format introduced by Doug Paul.
+
+p(wd3|wd1,wd2)= if(trigram exists)           p_3(wd1,wd2,wd3)
+                else if(bigram w1,w2 exists) bo_wt_2(w1,w2)*p(wd3|wd2)
+                else                         p(wd3|w2)
+
+p(wd2|wd1)= if(bigram exists) p_2(wd1,wd2)
+            else              bo_wt_1(wd1)*p_1(wd2)
+
+All probs and back-off weights (bo_wt) are given in log10 form.
+
+Data formats:
+
+Beginning of data mark: \data\
+ngram 1=nr            # number of 1-grams
+ngram 2=nr            # number of 2-grams
+ngram 3=nr            # number of 3-grams
+
+\1-grams:
+p_1     wd_1 bo_wt_1
+\2-grams:
+p_2     wd_1 wd_2 bo_wt_2
+\3-grams:
+p_3     wd_1 wd_2 wd_3 
+
+end of data mark: \end\
+
+\data\
+ngram 1=289
+ngram 2=780
+ngram 3=984
+
+\1-grams:
+-1.3635 <s>	-0.6329
+-1.3670 </s>	-2.0777
+-3.9447 będzie	0.0000
+-3.9447 bujać	0.0000
+-3.9447 bujaj	0.0000
+-3.9447 buzia	0.0000
+-3.9447 buzią	0.0000
+-3.9447 buzie	0.0011
+-2.6153 buzię	-0.9506
+-3.9447 buźkę	0.0000
+-3.9447 być	0.0000
+-2.8584 chciałbym	-0.6966
+-2.3813 ciemniej	-1.1725
+-2.3813 cisza	-1.1425
+-2.3813 ciszej	-1.0707
+-3.9447 chłodniej	0.0000
+-3.9447 chłodzenia	0.0000
+-3.9447 chłodzenie	0.0000
+-3.9447 ciemnoniebieski	0.0000
+-3.9447 ciemnoniebieskie	0.0000
+-3.9447 cieplej	0.0000
+-3.9447 ciepło	0.0000
+-2.8584 coś	-0.6931
+-2.0133 czerwone	-1.4687
+-2.0802 czerwony	-1.4077
+-2.0455 czterdzieści	-0.3831
+-2.2563 czternaście	-0.9397
+-1.8807 cztery	-0.9926
+-1.9553 diod	-1.5458
+-2.3813 dioda	-1.1313
+-1.6896 diody	-1.4497
+-2.2844 dodać	-1.2176
+-2.5574 dodaj	-0.9459
+-2.1180 dodawania	-1.3624
+-2.5574 dodawanie	-0.9422
+-1.6543 dwa	-1.1867
+-2.8584 dwie	-0.6928
+-1.9290 dwadzieścia	-0.4965
+-2.2300 dwanaście	-1.3312
+-2.5062 dwóch	-1.0307
+-3.9447 dwukrotnie	0.0000
+-3.9447 dzielenia	0.0000
+-3.9447 dzielenie	0.0000
+-2.2844 dzieścia	-0.9192
+-2.3143 dziesiąt	-0.7079
+-1.9419 dziesięć	-1.5765
+-2.0625 dziewięć	-0.7189
+-2.1594 dziewięćdziesiąt	-1.3070
+-2.2563 dziewiętnaście	-1.2466
+-3.9447 dzwonić	0.0000
+-3.9447 dzwoń	0.0000
+-2.4191 dźwięk	-1.0755
+-3.9447 fioletowe	0.0000
+-3.9447 fioletowy	0.0000
+-3.9447 funkcja	0.0006
+-2.8584 funkcje	-0.6975
+-3.9447 funkcję	0.0000
+-2.6153 funkcji	-0.8998
+-3.9447 głos	0.0191
+-2.3813 głośniej	-1.1398
+-2.3465 głośność	-0.8671
+-3.9447 grać	0.0000
+-3.9447 graj	0.0000
+-3.9447 granie	0.0000
+-3.9447 grzania	0.0000
+-3.9447 grzanie	0.0000
+-1.9980 i	-1.4862
+-1.9041 ile	-1.2573
+-3.9447 imie	0.0011
+-2.6153 imię	-0.9328
+-3.9447 intensywność	0.0000
+-3.9447 intensywny	0.0000
+-3.9447 jasnoniebieski	0.0000
+-3.9447 jasnoniebieskie	0.0000
+-2.4191 jak	-1.1045
+-2.2844 jaki	-1.1928
+-2.0802 jasność	-1.4368
+-2.3813 jasności	-0.8150
+-2.3813 jaśniej	-1.1473
+-2.1382 jeden	-0.6270
+-2.2563 jedenaście	-1.2630
+-1.7615 jest	-1.6995
+-2.5574 klocek	-0.9339
+-2.5574 klocka	-0.9454
+-2.5574 klocki	-0.8970
+-2.0133 kolor	-1.4498
+-2.3813 kolory	-0.8222
+-2.8584 komend	-0.6941
+-3.9447 komenda	0.0000
+-3.9447 komendy	0.0012
+-3.9447 koniec	0.0000
+-2.5574 kostce	-0.9512
+-2.5574 kostka	-0.9488
+-2.8584 kostkę	-0.6891
+-2.5574 kostki	-0.9530
+-3.1594 kostko	0.0074
+-3.9447 krok	0.0000
+-2.9833 kroki	-0.5819
+-3.9447 liczb	0.0000
+-3.9447 liczba	0.0000
+-3.9447 liczbami	0.0000
+-3.9447 liczbą	0.0012
+-2.5574 liczby	-0.9471
+-2.3813 maksymalna	-1.1077
+-2.3813 maksymalne	-1.1362
+-2.2300 masz	-1.2874
+-3.9447 mina	0.0000
+-2.9833 minę	-0.6970
+-2.3813 minimalna	-0.6398
+-2.3813 minimalne	-1.1335
+-3.9447 minka	0.0000
+-2.9833 minkę	-0.6970
+-2.2844 minus	-1.2168
+-3.9447 mnożenia	0.0000
+-3.9447 mnożenie	0.0000
+-3.9447 muzyczka	0.0000
+-2.9833 muzyczkę	-0.6979
+-3.9447 muzyka	0.0000
+-2.0133 moc	-1.4691
+-2.3813 mocniej	-1.1325
+-1.7615 na	-1.7210
+-3.9447 nastaw	0.0000
+-3.9447 nastawić	0.0000
+-2.7615 nazywasz	-0.4742
+-2.5574 nie	-0.9488
+-2.0802 niebieski	-1.4458
+-2.0802 niebieskie	-1.1078
+-3.9447 niech	0.0000
+-2.5574 od	-0.9338
+-2.2844 odejmij	-1.2216
+-2.2844 odejmowania	-1.2206
+-2.5574 odejmowanie	-0.9506
+-2.5574 odjąć	-0.9436
+-3.9447 ogrzewanie	0.0000
+-2.1382 osiem	-0.6486
+-2.2563 osiemdziesiąt	-1.1978
+-2.2563 osiemnaście	-1.2656
+-3.9447 ostatni	0.0015
+-3.9447 ostatnią	0.0000
+-2.4604 ostatnich	-1.0765
+-2.6153 ostatnie	-0.8946
+-1.7703 pięć	-1.0881
+-2.0455 pięćdziesiąt	-0.3855
+-2.2563 piętnaście	-1.2696
+-2.5574 plus	-0.6239
+-3.9447 po	0.0018
+-3.9447 pobujać	0.0000
+-3.9447 pobujaj	0.0000
+-3.9447 podać	0.0012
+-2.5574 podaj	-0.9479
+-3.9447 podnieś	0.0000
+-3.9447 podnieść	0.0000
+-3.9447 podziel	0.0000
+-3.9447 podzielić	0.0000
+-2.3465 pokaż	-1.1985
+-2.1594 pomarańczowy	-1.3672
+-2.2563 pomarańczowe	-1.2465
+-2.3813 pomoc	-0.8399
+-2.5574 pomocy	-0.9524
+-3.9447 poruszać	0.0000
+-3.9447 poruszaj	0.0000
+-2.8584 powiedz	-0.6978
+-2.9833 powtórz	-0.6940
+-3.9447 powtórzcie	0.0000
+-2.8584 powtórzył	-0.6978
+-3.9447 procent	0.0000
+-2.8584 przedstaw	-0.6937
+-2.7615 pudełka	-0.4580
+-3.9447 pudełkach	0.0000
+-3.9447 pudełkami	0.0000
+-3.9447 pudełko	0.0191
+-3.9447 ratunek	0.0000
+-3.9447 ratunku	0.0000
+-3.9447 razy	0.0000
+-2.3813 rękaw	-0.8373
+-2.5574 rękawa	-0.9499
+-3.9447 rękawie	0.0058
+-3.9447 robocie	0.0048
+-3.9447 robocik	0.0000
+-3.9447 robociki	0.0000
+-3.9447 robociku	0.0051
+-2.5574 robot	-0.6313
+-3.9447 robota	0.0000
+-2.6823 roboty	-0.3551
+-3.9447 ruszać	0.0000
+-3.9447 ruszaj	0.0000
+-2.1382 siedem	-0.5521
+-2.2300 siedemdziesiąt	-1.2299
+-2.2563 siedemnaście	-1.2922
+-1.9833 się	-1.0103
+-3.9447 siła	0.0000
+-3.9447 siłę	0.0000
+-2.3813 słabiej	-1.1412
+-3.9447 smutna	0.0011
+-2.6153 smutną	-0.9527
+-3.9447 smutny	0.0024
+-2.2563 sto	-1.2231
+-2.2563 stop	-1.2937
+-2.2563 światła	-1.2931
+-2.2563 światełko	-1.2692
+-2.2563 światło	-1.2638
+-2.1594 świecenia	-1.3258
+-2.3813 świecenie	-1.1713
+-3.9447 świeć	0.0000
+-2.2563 szesnaście	-1.2927
+-2.0455 sześć	-0.8408
+-2.0802 sześćdziesiąt	-0.2926
+-3.9447 ta	0.0033
+-3.9447 tańcz	0.0000
+-3.9447 tańczyć	0.0000
+-3.9447 te	0.0000
+-2.1180 to	-1.3531
+-2.6153 teraz	-0.9457
+-1.9164 trzy	-0.9527
+-2.0455 trzydzieści	-0.3866
+-2.2563 trzynaście	-1.2719
+-2.6823 twarz	-0.9476
+-2.5574 uruchom	-0.9518
+-2.5574 uruchomić	-0.9518
+-3.9447 ustaw	0.0000
+-3.9447 ustawić	0.0000
+-3.9447 uśmiech	0.0000
+-3.9447 uśmiechnięta	0.0006
+-2.8584 uśmiechniętą	-0.6979
+-3.9447 uśmiechnięty	0.0000
+-3.9447 uśmiechnij	0.0045
+-3.9447 wesoła	0.0011
+-2.6153 wesołą	-0.9528
+-3.9447 wesoły	0.0012
+-2.5574 wezwać	-0.9508
+-2.4191 wezwij	-1.1091
+-3.9447 wezwijcie	0.0000
+-2.3813 wibrowanie	-1.1664
+-1.8584 wibracje	-1.6297
+-2.0802 wibracji	-1.1003
+-3.9447 wibruj	0.0000
+-1.9553 włącz	-1.2329
+-2.3813 włączyć	-1.1065
+-3.9447 wstać	0.0000
+-3.9447 wstań	0.0000
+-2.2052 wszystkie	-0.9431
+-3.9447 wszystko	0.0000
+-3.9447 wycisz	0.0045
+-3.9447 wyciszcie	0.0045
+-3.9447 wykonać	0.0015
+-2.4604 wykonaj	-1.0917
+-1.9691 wyłącz	-1.0455
+-3.9447 wyłączcie	0.0000
+-2.3813 wyłączyć	-1.1331
+-1.9980 wynik	-1.1766
+-2.5574 wynosi	-0.9512
+-2.5574 wynosić	-0.9509
+-2.6153 wyświetl	-0.9525
+-2.6823 wyświetlacz	-0.8779
+-3.9447 wyświetlanie	0.0191
+-3.9447 wyświetlić	0.0011
+-3.9447 zadzwoń	0.0000
+-3.9447 zadzwońcie	0.0000
+-3.9447 zadzwonić	0.0000
+-2.6153 zagraj	-0.9515
+-2.8584 zamiaucz	-0.6926
+-1.8807 zapal	-1.5902
+-3.9447 zapalcie	0.0000
+-2.2844 zapalić	-1.2463
+-2.8584 zaszczekaj	-0.6960
+-3.9447 zaświecić	0.0000
+-3.9447 zaświećcie	0.0045
+-3.9447 zatańcz	0.0000
+-3.9447 zatańczyć	0.0000
+-2.2563 zatrzymaj	-1.2665
+-3.9447 zatrzymajcie	0.0000
+-2.3813 zatrzymać	-1.1691
+-3.9447 zawibruj	0.0000
+-3.9447 zdziwić	0.0000
+-3.9447 zdziwienie	0.0000
+-2.9833 zdziwioną	-0.6981
+-3.9447 zero	0.0000
+-2.3813 zgaszenie	-1.1685
+-1.9290 zgaś	-1.2582
+-2.0291 zielone	-1.4905
+-2.1594 zielony	-1.3609
+-2.1594 zmiana	-1.3448
+-2.0291 zmniejsz	-1.4628
+-2.2563 zmienić	-1.2899
+-1.8922 zmień	-1.5918
+-2.0802 zwiększ	-0.9252
+-2.8584 żebyś	-0.6961
+-2.3813 żółte	-1.1005
+-2.7615 żółty	-0.4496
+
+\2-grams:
+-99.9990 <s> buzia 0.0000
+-1.5653 <s> chciałbym 0.0969
+-1.6902 <s> ciemniej -0.2553
+-1.6902 <s> czerwony -0.2604
+-99.9990 <s> czternaście 0.2374
+-1.5653 <s> cztery -0.5368
+-1.8663 <s> diod 0.3921
+-1.6902 <s> diody -0.3454
+-99.9990 <s> dwa 0.0519
+-1.4683 <s> dwadzieścia -0.5963
+-1.6902 <s> dwanaście -0.2915
+-1.4683 <s> dziesiąt -0.4228
+-99.9990 <s> dziesięć 0.0997
+-99.9990 <s> dziewięćdziesiąt 0.0872
+-1.3892 <s> ile -0.4424
+-1.6902 <s> jasność -0.3917
+-1.6902 <s> jeden -0.2293
+-99.9990 <s> klocka 0.0000
+-99.9990 <s> kostce 0.9542
+-1.6902 <s> moc -0.4033
+-1.4683 <s> na -0.5963
+-1.5653 <s> odejmij -0.3259
+-1.4683 <s> odejmowania 0.5315
+-99.9990 <s> osiem 0.0969
+-99.9990 <s> pięćdziesiąt 0.0000
+-99.9990 <s> piętnaście 0.2374
+-1.6902 <s> podaj 0.4771
+-1.8663 <s> rękaw 0.3680
+-99.9990 <s> robocie 0.0000
+-99.9990 <s> siedemdziesiąt 0.2139
+-1.6902 <s> siedemnaście -0.3522
+-1.6902 <s> słabiej -0.2852
+-1.6902 <s> stop -0.3522
+-1.4683 <s> szesnaście -0.5229
+-99.9990 <s> sześć 0.1347
+-99.9990 <s> sześćdziesiąt 0.1597
+-99.9990 <s> to 1.3617
+-99.9990 <s> teraz 0.2553
+-1.6902 <s> trzy -0.3115
+-99.9990 <s> trzydzieści 0.0000
+-99.9990 <s> uruchom 0.0000
+-1.4683 <s> włącz 0.2118
+-1.6902 <s> włączyć 0.6368
+-99.9990 <s> wyłącz 0.0000
+-99.9990 <s> wynosi 0.9542
+-1.5653 <s> wyświetl -0.3468
+-99.9990 <s> wyświetlić 0.0000
+-1.2642 <s> zapal -0.6576
+-1.6902 <s> zgaś -0.4301
+-1.1673 <s> zmień -0.4286
+-1.4683 <s> zwiększ -0.3979
+-1.4683 <s> żółte -0.2840
+-0.0035 </s> <s> 0.0739
+-99.9990 buzia buzią 0.0000
+-99.9990 buzią buzie 0.0000
+-99.9990 buzie buzię 0.0000
+-99.9990 buzię chciałbym 0.0000
+-0.3522 buzię pokaż -0.3522
+-0.3522 buzię wyświetl -0.3468
+-99.9990 chciałbym ciemniej 0.2218
+-0.0969 chciałbym żebyś 0.0969
+-0.3979 ciemniej cisza -0.5863
+-0.2730 ciemniej ciszej -0.5229
+-0.2430 cisza ciemniej -0.5721
+-0.4472 cisza ciszej -0.5229
+-99.9990 ciszej coś 0.0000
+-0.4771 ciszej czerwone -0.5257
+-0.2341 ciszej czerwony -0.7202
+-99.9990 coś czerwone 0.0764
+-0.0969 coś jak -0.3912
+-0.5883 czerwone cisza -0.5351
+-0.7924 czerwone czerwony -0.5942
+-0.4122 czerwone diody -0.3077
+-99.9990 czerwone moc 0.0738
+-0.7924 czerwone niebieskie -0.6135
+-99.9990 czerwony </s> 2.0969
+-0.7482 czerwony czerwone -0.6226
+-0.6690 czerwony czterdzieści -0.6927
+-0.6021 czerwony czternaście -0.6077
+-0.8451 czerwony zmiana -0.5229
+-0.7482 czerwony zmień -0.4841
+-0.5441 czterdzieści czerwone -0.7735
+-99.9990 czterdzieści czterdzieści 0.0000
+-0.7482 czterdzieści czternaście -0.2953
+-99.9990 czterdzieści cztery 0.0894
+-99.9990 czterdzieści dwa 0.0000
+-99.9990 czterdzieści dziewięć 0.0000
+-99.9990 czterdzieści jeden 0.0000
+-99.9990 czterdzieści osiem 0.0000
+-99.9990 czterdzieści pięć 0.0000
+-0.7482 czterdzieści pięćdziesiąt -0.6135
+-99.9990 czterdzieści siedem 0.0000
+-99.9990 czterdzieści sześć 0.0000
+-99.9990 czterdzieści trzy 0.0000
+-0.6767 czternaście </s> 1.4949
+-99.9990 czternaście cztery 0.0653
+-0.3757 czternaście diod -0.7973
+-0.5798 czternaście piętnaście -0.5663
+-99.9990 czternaście włącz 0.1648
+-0.7304 cztery czterdzieści -0.7570
+-0.8553 cztery diod -0.7013
+-99.9990 cztery dwadzieścia 0.0000
+-0.7304 cztery minus -0.6269
+-0.7304 cztery odjąć 0.0512
+-1.0314 cztery ostatnie -0.3979
+-0.9345 cztery pięć -0.6584
+-99.9990 cztery pięćdziesiąt 0.0000
+-99.9990 cztery sześćdziesiąt 0.0000
+-99.9990 cztery trzydzieści 0.0000
+-0.7901 diod dioda -0.5863
+-0.6651 diod diody -0.8461
+-0.3378 diod na -0.9059
+-0.8692 diod niebieski -0.6168
+-0.2430 dioda cztery -0.8137
+-0.4472 dioda diody -0.6642
+-0.8587 diody </s> 1.1427
+-99.9990 diody dodać 0.0000
+-0.9098 diody dodawania -0.7270
+-1.1139 diody dwa -0.6673
+-99.9990 diody stop 0.1249
+-1.2109 diody wezwij -0.4424
+-0.6368 diody zapal -0.9306
+-0.5825 diody zgaś -0.8435
+-1.5119 diody zmień 0.4087
+-1.3358 diody zwiększ -0.3917
+-0.3274 dodać dioda -0.5351
+-99.9990 dodać dodaj 0.0000
+-0.3274 dodać dwa -0.8512
+-99.9990 dodaj dodawania 0.0000
+-0.0512 dodaj dziesięć -0.6922
+-99.9990 dodawania dodawanie 0.0000
+-0.4771 dodawania dwa -0.8512
+-0.5351 dodawania ile -0.5093
+-0.4771 dodawania liczby 0.0512
+-0.0512 dodawanie dodać -0.6269
+-99.9990 dodawanie dwa 0.0000
+-1.2492 dwa </s> 1.4949
+-99.9990 dwa czterdzieści 0.0000
+-0.9482 dwa dodać -0.6269
+-99.9990 dwa dwie 0.0000
+-1.1523 dwa dwadzieścia -0.2653
+-0.9482 dwa dwanaście -0.6875
+-0.9482 dwa dzieścia -0.1249
+-0.9482 dwa ile -0.5673
+-0.9482 dwa jaki 0.3010
+-1.0062 dwa plus -0.1919
+-1.0731 dwa podaj 0.1761
+-99.9990 dwa sześćdziesiąt 0.0348
+-1.1523 dwa trzy -0.6425
+-99.9990 dwa trzydzieści 0.0000
+-99.9990 dwie dwadzieścia 0.0235
+-0.0969 dwie ostatnie -0.3010
+-0.6767 dwadzieścia </s> 1.1938
+-99.9990 dwadzieścia cztery 0.0000
+-0.6767 dwadzieścia dodawanie 0.0512
+-99.9990 dwadzieścia dwa 0.0317
+-1.2788 dwadzieścia dwanaście 0.1856
+-99.9990 dwadzieścia dziesiąt 0.0000
+-99.9990 dwadzieścia dziewięć 0.0000
+-99.9990 dwadzieścia jeden 0.0000
+-0.8808 dwadzieścia odejmij -0.4228
+-99.9990 dwadzieścia osiem 0.0000
+-99.9990 dwadzieścia pięć 0.0000
+-99.9990 dwadzieścia siedem 0.0000
+-99.9990 dwadzieścia sześć 0.0000
+-99.9990 dwadzieścia trzy 0.0000
+-0.8808 dwadzieścia trzydzieści -0.6135
+-0.6628 dwanaście </s> 1.3979
+-0.8846 dwanaście dwóch -0.3900
+-0.7597 dwanaście dziesiąt -0.3259
+-0.6628 dwanaście dziesięć -0.6264
+-0.6628 dwanaście trzynaście -0.5740
+-0.7404 dwóch dwadzieścia 0.1027
+-0.1383 dwóch ile -0.8034
+-0.4102 dzieścia </s> 1.2518
+-99.9990 dzieścia ciemniej 0.2218
+-0.6532 dzieścia dwadzieścia -0.4994
+-99.9990 dzieścia dwanaście 0.1065
+-0.5563 dzieścia zmień -0.6425
+-0.7533 dziesiąt </s> 1.6198
+-99.9990 dziesiąt cztery 0.0653
+-99.9990 dziesiąt dziesięć 0.0726
+-0.3274 dziesiąt dziewięć -0.7570
+-0.7533 dziesiąt trzy -0.4084
+-99.9990 dziesiąt włącz 0.1648
+-0.6880 dziesięć dzieścia -0.4929
+-0.8129 dziesięć dziewięć -0.5863
+-0.4150 dziesięć i -0.8880
+-0.8921 dziesięć jedenaście -0.5663
+-0.9890 dziesięć ostatnich -0.2218
+-99.9990 dziewięć czterdzieści 0.0000
+-0.7482 dziewięć dziesięć -0.6394
+-0.4472 dziewięć dziewięćdziesiąt -0.7368
+-0.5441 dziewięć dziewiętnaście -0.4260
+-99.9990 dziewięć pięćdziesiąt 0.0000
+-99.9990 dziewięć siedemdziesiąt 0.0000
+-99.9990 dziewięć sześćdziesiąt 0.0000
+-99.9990 dziewięć trzydzieści 0.0000
+-99.9990 dziewięćdziesiąt </s> 2.0969
+-0.4973 dziewięćdziesiąt dziesięć -0.7454
+-0.6435 dziewięćdziesiąt dziewiętnaście -0.2218
+-0.7404 dziewięćdziesiąt sto -0.4929
+-0.6435 dziewięćdziesiąt zmień -0.5913
+-0.5563 dziewiętnaście dwadzieścia -0.6377
+-99.9990 dziewiętnaście dźwięk 0.0000
+-0.1761 dziewiętnaście głośniej 0.0669
+-0.2341 dźwięk dziewięćdziesiąt -0.6788
+-99.9990 dźwięk funkcja 0.0000
+-0.4771 dźwięk zaszczekaj 0.0969
+-99.9990 funkcja funkcje 0.0000
+-99.9990 funkcje funkcji 0.0000
+-0.0969 funkcje powtórz 0.0969
+-99.9990 funkcji głośniej 0.1919
+-0.0580 funkcji wykonaj -0.4301
+-99.9990 głos </s> 2.0969
+-0.4472 głośniej głośność -0.5229
+-0.2430 głośniej i -0.7825
+-0.2730 głośność dźwięk -0.5229
+-99.9990 głośność i 0.0000
+-0.4771 głośność jaśniej -0.4771
+-99.9990 głośność zawibruj 0.0000
+-0.6154 i dwa -0.8372
+-0.6154 i dwadzieścia -0.7212
+-99.9990 i ile 0.0000
+-0.6154 i jasność -0.7570
+-0.6154 i pięć -0.8361
+-99.9990 ile </s> 2.0969
+-0.6880 ile głośność -0.5721
+-99.9990 ile imie 0.0000
+-0.6880 ile jest -0.7586
+-0.2688 ile to 0.0395
+-99.9990 imie imię 0.0000
+-0.3522 imię </s> 1.4949
+-99.9990 imię jak 0.0000
+-0.3522 imię powiedz 0.0969
+-99.9990 jak jaki 0.0000
+-0.2688 jak masz -0.6580
+-0.4150 jak się -0.6446
+-99.9990 jaki jasność 0.0854
+-0.0280 jaki jest -1.0429
+-0.7482 jasność jasności -0.2518
+-0.5441 jasność jaśniej -0.5721
+-0.4929 jasność świecenia -0.7386
+-0.7482 jasność zwiększ -0.5306
+-99.9990 jasności </s> 2.0969
+-0.2430 jasności ile -0.8034
+-99.9990 jasności jaśniej 0.0000
+-0.5441 jasności jeden -0.4956
+-0.6990 jaśniej </s> 1.6198
+-0.6990 jaśniej jasność -0.3917
+-99.9990 jaśniej jeden 0.1065
+-0.2730 jaśniej jedenaście -0.6657
+-99.9990 jeden czterdzieści 0.0000
+-0.6628 jeden dwa -0.6673
+-99.9990 jeden dwadzieścia 0.0000
+-0.4586 jeden jasności -0.5351
+-0.6628 jeden jedenaście -0.5663
+-99.9990 jeden pięćdziesiąt 0.0000
+-99.9990 jeden sześćdziesiąt 0.0000
+-99.9990 jeden trzydzieści 0.0000
+-0.5798 jedenaście dwanaście -0.5925
+-99.9990 jedenaście jest 0.0000
+-0.3757 jedenaście klocek 0.0512
+-0.5798 jedenaście kolor -0.6198
+-0.5482 jest cztery -0.9740
+-0.5482 jest dwa -1.0730
+-0.8212 jest jeden -0.7175
+-99.9990 jest klocek 0.0000
+-0.5781 jest wynik -0.6410
+-99.9990 klocek </s> 2.0969
+-0.0512 klocek klocki 0.0000
+-0.0512 klocka jest -0.8320
+-99.9990 klocka klocki 0.0000
+-99.9990 klocki kolor 0.0792
+-0.0580 klocki kolory -0.5441
+-99.9990 kolor </s> 2.0969
+-0.2730 kolor diod -0.9369
+-0.5740 kolor klocka 0.0512
+-0.7782 kolor kolory -0.5071
+-99.9990 kolory </s> 2.0969
+-99.9990 kolory komend 0.0000
+-0.3010 kolory kostce 0.1091
+-0.4472 kolory maksymalna -0.5393
+-99.9990 komend komenda 0.0000
+-0.0969 komend włącz -0.5538
+-99.9990 komenda komendy 0.0000
+-99.9990 komendy kostka 0.0000
+-99.9990 kostce kostki 0.0000
+-0.0512 kostce maksymalna -0.4881
+-0.0512 kostka kolor -0.7684
+-99.9990 kostka kostce 0.0000
+-0.0969 kostkę wyłącz -0.5494
+-99.9990 kostkę zgaś 0.0000
+-0.0512 kostki kostka 0.0512
+-99.9990 kostki liczba 0.0000
+-99.9990 kostko jak 0.2109
+-99.9990 kostko zapal 0.0202
+-99.9990 kroki </s> 2.0969
+-0.1249 kroki teraz -0.2218
+-99.9990 liczba liczbami 0.0000
+-99.9990 liczbami liczbą 0.0000
+-99.9990 liczbą liczby 0.0000
+-99.9990 liczby maksymalna 0.0000
+-0.0512 liczby trzy -0.8088
+-99.9990 maksymalna maksymalne 0.0000
+-0.2109 maksymalna masz -0.6812
+-0.5119 maksymalna minimalna -0.1963
+-0.2430 maksymalne kostki 0.0512
+-99.9990 maksymalne masz 0.0000
+-0.4472 maksymalne wibracje -0.6198
+-99.9990 masz minimalna 0.0000
+-0.3979 masz minimalne -0.5351
+-0.4559 masz na -0.7882
+-0.6990 masz zapalić -0.4929
+-0.0969 minę pokaż -0.4771
+-0.6690 minimalna </s> 1.6198
+-99.9990 minimalna ciemniej 0.2218
+-0.2430 minimalna maksymalne -0.5351
+-99.9990 minimalna minimalne 0.0000
+-99.9990 minimalna moc 0.0738
+-99.9990 minimalne minus 0.0000
+-0.2430 minimalne moc -0.7597
+-0.4472 minimalne wibracje -0.6305
+-0.0969 minkę pokaż -0.3522
+-0.3274 minus minimalna -0.5351
+-99.9990 minus moc 0.0738
+-0.3274 minus pięć -0.8177
+-0.0969 muzyczkę zagraj -0.3468
+-0.8062 moc </s> 1.3979
+-0.8062 moc mocniej -0.5071
+-0.9031 moc na -0.4994
+-0.8062 moc świecenia -0.5925
+-0.4260 moc wibracji -0.5071
+-0.2430 mocniej minus -0.6269
+-99.9990 mocniej na 0.0000
+-0.4472 mocniej niebieski -0.6168
+-0.8016 na czerwony -0.7858
+-0.8016 na dwa -0.9023
+-1.0569 na dziewięć -0.5071
+-0.9108 na imię 0.1091
+-99.9990 na nazywasz 0.0000
+-0.6767 na niebieski -0.8209
+-1.0569 na pięć -0.6668
+-1.0569 na zielony -0.5798
+-1.1538 na żółty 0.1761
+-0.1761 nazywasz jak -0.2663
+-99.9990 nazywasz nie 0.0000
+-99.9990 nazywasz robocik 0.0000
+-0.0512 nie mocniej -0.5351
+-99.9990 nie niebieski 0.0822
+-0.7634 niebieski niebieskie -0.6135
+-0.5593 niebieski odejmij -0.6269
+-0.7634 niebieski pomarańczowe -0.3979
+-0.7634 niebieski zmienić -0.5740
+-0.7634 niebieski zmień -0.4841
+-99.9990 niebieskie </s> 2.0969
+-0.5441 niebieskie diody -0.6087
+-0.5441 niebieskie nie 0.0512
+-0.7482 niebieskie niebieski -0.6168
+-99.9990 niebieskie od 0.0000
+-0.7482 niebieskie osiem -0.5798
+-99.9990 od </s> 2.0969
+-0.0512 od dwóch -0.3388
+-99.9990 odejmij odejmowania 0.0000
+-0.3274 odejmij odejmowanie 0.0512
+-0.3274 odejmij trzy -0.8088
+-0.3274 odejmowania dziesięć -0.6922
+-0.3274 odejmowania niebieskie -0.7570
+-99.9990 odejmowania odejmowanie 0.0000
+-99.9990 odejmowanie odjąć 0.0000
+-0.0512 odejmowanie osiemdziesiąt -0.6726
+-99.9990 odjąć osiem 0.1192
+-0.0512 odjąć pięć -0.8361
+-0.6990 osiem </s> 1.3979
+-99.9990 osiem czterdzieści 0.0000
+-99.9990 osiem dwadzieścia 0.0000
+-0.6990 osiem dziewięć -0.6135
+-0.7959 osiem odejmowania -0.3259
+-0.6198 osiem osiemdziesiąt -0.6269
+-99.9990 osiem pięćdziesiąt 0.0000
+-99.9990 osiem sześćdziesiąt 0.0000
+-99.9990 osiem trzydzieści 0.0000
+-99.9990 osiemdziesiąt </s> 2.0969
+-0.6284 osiemdziesiąt dziewięćdziesiąt -0.5149
+-0.5315 osiemdziesiąt osiemnaście -0.5663
+-0.3854 osiemdziesiąt pięć -0.7304
+-0.5798 osiemnaście dziewiętnaście -0.5576
+-0.3757 osiemnaście osiem -0.7093
+-99.9990 osiemnaście ostatni 0.0000
+-0.5798 osiemnaście pięć -0.6498
+-99.9990 ostatni ostatnich 0.0000
+-0.2341 ostatnich funkcji 0.0580
+-0.4771 ostatnich komend 0.0969
+-99.9990 ostatnich ostatnie 0.0000
+-0.3010 ostatnie funkcje 0.0969
+-0.4260 ostatnie kroki 0.1249
+-99.9990 ostatnie pięć 0.0492
+-0.9700 pięć </s> 1.3188
+-99.9990 pięć czterdzieści 0.0000
+-0.8451 pięć dodaj 0.0512
+-99.9990 pięć dwadzieścia 0.0000
+-1.1461 pięć dziesiąt -0.2167
+-0.8451 pięć jaki 0.3010
+-1.1461 pięć ostatnich -0.2218
+-0.9700 pięć pięćdziesiąt -0.6927
+-0.9031 pięć piętnaście -0.6077
+-1.0492 pięć sześć -0.6368
+-99.9990 pięć sześćdziesiąt 0.0000
+-99.9990 pięć trzydzieści 0.0000
+-1.1461 pięć żółte -0.1871
+-99.9990 pięćdziesiąt cztery 0.0000
+-99.9990 pięćdziesiąt dwa 0.0252
+-99.9990 pięćdziesiąt dziewięć 0.0000
+-99.9990 pięćdziesiąt jeden 0.0000
+-99.9990 pięćdziesiąt osiem 0.0000
+-0.5441 pięćdziesiąt osiemnaście -0.6657
+-99.9990 pięćdziesiąt pięć 0.0492
+-99.9990 pięćdziesiąt pięćdziesiąt 0.0000
+-0.7482 pięćdziesiąt piętnaście -0.5663
+-99.9990 pięćdziesiąt siedem 0.0000
+-99.9990 pięćdziesiąt sześć 0.0000
+-0.7482 pięćdziesiąt sześćdziesiąt -0.6062
+-99.9990 pięćdziesiąt trzy 0.0000
+-99.9990 piętnaście plus 0.0000
+-0.3757 piętnaście pomarańczowy -0.7270
+-0.5798 piętnaście pomarańczowe -0.3979
+-0.5798 piętnaście szesnaście -0.5229
+-99.9990 plus </s> 2.0969
+-0.1091 plus dwa -0.7932
+-99.9990 plus podać 0.0000
+-99.9990 po pomoc 0.0000
+-99.9990 podać podaj 0.0000
+-99.9990 podaj pokaż 0.0000
+-0.0512 podaj wynik -0.6284
+-99.9990 pokaż pomarańczowy 0.0000
+-0.6021 pokaż smutną -0.3468
+-0.3590 pokaż wesołą 0.1091
+-0.6021 pokaż zdziwioną 0.0969
+-99.9990 pomarańczowy pomarańczowe 0.0000
+-0.4771 pomarańczowy pomocy 0.0512
+-0.6812 pomarańczowy siedem -0.5740
+-0.6812 pomarańczowy zielony -0.6021
+-0.6812 pomarańczowy zmiana -0.5975
+-0.3522 pomarańczowe pięćdziesiąt -0.7570
+-0.3010 pomarańczowe pomarańczowy -0.7202
+-99.9990 pomarańczowe pomoc 0.0000
+-0.2430 pomoc pomarańczowe -0.6478
+-99.9990 pomoc pomocy 0.0000
+-99.9990 pomoc wycisz 0.0000
+-0.5441 pomoc wykonaj -0.4424
+-99.9990 pomocy powiedz 0.0000
+-0.0512 pomocy rękawa 0.0512
+-0.0969 powiedz coś 0.0969
+-99.9990 powiedz powtórzył 0.0000
+-0.0969 powtórz dziesięć -0.5551
+-0.0969 powtórzył dwie 0.0969
+-99.9990 powtórzył przedstaw 0.0000
+-99.9990 przedstaw pudełka 0.0000
+-0.0969 przedstaw się -0.5477
+-0.1761 pudełka </s> 1.4949
+-99.9990 pudełka pudełkach 0.0000
+-99.9990 pudełka zaświećcie 0.0000
+-99.9990 pudełkach pudełkami 0.0000
+-99.9990 pudełkami pudełko 0.0000
+-99.9990 pudełko </s> 2.0969
+-0.2430 rękaw pomoc -0.5351
+-99.9990 rękaw rękawa 0.0000
+-99.9990 rękaw rękawie 0.0000
+-0.5441 rękaw wyłącz -0.5494
+-99.9990 rękawa robot 0.0000
+-0.0512 rękawa siedem -0.7270
+-99.9990 rękawie zapal 0.0202
+-99.9990 robocie włącz 0.0000
+-99.9990 robocik robociki 0.0000
+-99.9990 robociki robociku 0.0000
+-99.9990 robociku dwadzieścia 0.0000
+-99.9990 robot </s> 2.0969
+-0.1091 robot rękaw -0.4771
+-99.9990 robot roboty 0.0000
+-99.9990 roboty siedem 0.1249
+-99.9990 roboty włącz 0.0000
+-0.2430 roboty wyłącz -0.5494
+-99.9990 roboty zadzwoń 0.0000
+-99.9990 siedem </s> 2.0969
+-99.9990 siedem czterdzieści 0.0000
+-99.9990 siedem dwadzieścia 0.0000
+-0.7782 siedem osiem -0.5051
+-99.9990 siedem pięćdziesiąt 0.0000
+-0.6021 siedem siedemdziesiąt -0.6021
+-0.4771 siedem siedemnaście -0.6812
+-99.9990 siedem sześćdziesiąt 0.0000
+-99.9990 siedem trzydzieści 0.0000
+-99.9990 siedemdziesiąt </s> 2.0969
+-0.6532 siedemdziesiąt osiemdziesiąt -0.4856
+-0.4102 siedemdziesiąt robot -0.1919
+-0.4771 siedemdziesiąt siedemnaście -0.6232
+-0.6021 siedemnaście osiemnaście -0.5663
+-0.5229 siedemnaście się -0.6446
+-0.3979 siedemnaście słabiej -0.5351
+-0.7533 się </s> 1.3188
+-0.9294 się jak -0.2663
+-1.2304 się kostko 0.0000
+-0.9294 się nazywasz -0.1249
+-99.9990 się pudełka 0.0000
+-0.6864 się siedemdziesiąt -0.6312
+-1.0544 się słabiej -0.2852
+-99.9990 się wyciszcie 0.0000
+-1.2304 się wyłącz 0.0000
+-99.9990 się zgaś 0.0000
+-1.0544 się zmień -0.2623
+-99.9990 słabiej smutna 0.0000
+-0.4472 słabiej sto -0.5229
+-0.2430 słabiej stop -0.6812
+-99.9990 smutna smutną 0.0000
+-0.3522 smutną buzię -0.3468
+-0.3522 smutną minkę 0.0969
+-99.9990 smutną smutny 0.0000
+-99.9990 smutny sto 0.1761
+-0.6532 sto </s> 1.4949
+-99.9990 sto ile 0.3358
+-0.4102 sto się -0.6358
+-0.4771 sto stop -0.6232
+-0.5229 stop światła -0.6232
+-0.3979 stop światełko -0.6657
+-0.6021 stop zatrzymaj -0.5663
+-0.6021 światła pomarańczowy -0.5975
+-0.3979 światła sto -0.6892
+-0.5229 światła światełko -0.6455
+-0.5798 światełko światło -0.5663
+-0.3757 światełko świecenia -0.7175
+-0.5798 światełko zielone -0.5825
+-0.5798 światło na -0.6243
+-0.3757 światło światła -0.6812
+-99.9990 światło świecenia 0.0000
+-0.5798 światło świecenie -0.4771
+-0.6628 świecenia </s> 1.3979
+-0.6628 świecenia na -0.6243
+-99.9990 świecenia świecenie 0.2218
+-0.8846 świecenia szesnaście -0.1549
+-0.4075 świecenia zmniejsz -0.7044
+-0.2730 świecenie światło -0.6657
+-0.3979 świecenie szesnaście -0.6320
+-0.7202 szesnaście </s> 1.4949
+-0.8451 szesnaście siedemnaście -0.3522
+-0.5441 szesnaście sześć -0.6628
+-0.4771 szesnaście sześćdziesiąt -0.6854
+-99.9990 sześć czterdzieści 0.0000
+-99.9990 sześć dwadzieścia 0.0000
+-1.0000 sześć dziesiąt -0.3928
+-0.8751 sześć ostatnich -0.4260
+-99.9990 sześć pięćdziesiąt 0.0000
+-0.8751 sześć siedem -0.5229
+-0.5740 sześć świecenie -0.5721
+-1.0000 sześć sześć -0.4314
+-0.8751 sześć sześćdziesiąt 0.0348
+-99.9990 sześć trzydzieści 0.0000
+-99.9990 sześćdziesiąt </s> 2.0969
+-99.9990 sześćdziesiąt cztery 0.0000
+-99.9990 sześćdziesiąt dwa 0.0000
+-99.9990 sześćdziesiąt dziewięć 0.0000
+-99.9990 sześćdziesiąt jeden 0.0000
+-99.9990 sześćdziesiąt osiem 0.0000
+-99.9990 sześćdziesiąt pięć 0.0000
+-99.9990 sześćdziesiąt siedem 0.0000
+-0.7160 sześćdziesiąt siedemdziesiąt -0.5898
+-99.9990 sześćdziesiąt sześć 0.0621
+-99.9990 sześćdziesiąt sześćdziesiąt 0.0000
+-99.9990 sześćdziesiąt te 0.0000
+-1.1139 sześćdziesiąt trzy 0.0687
+-0.5119 sześćdziesiąt trzydzieści -0.7570
+-99.9990 ta to 0.0000
+-99.9990 te ta 0.0000
+-0.0193 to jest -0.9799
+-99.9990 to teraz 0.0000
+-0.3522 teraz masz -0.5051
+-0.3522 teraz powtórzył 0.0969
+-99.9990 teraz trzy 0.0687
+-1.1357 trzy </s> 1.6198
+-99.9990 trzy czterdzieści 0.0000
+-0.9138 trzy cztery -0.6453
+-99.9990 trzy dwadzieścia 0.0000
+-0.7097 trzy i -0.7825
+-0.7097 trzy od 0.0512
+-99.9990 trzy pięćdziesiąt 0.0000
+-0.7677 trzy sześć -0.7104
+-99.9990 trzy sześćdziesiąt 0.0000
+-0.8346 trzy trzydzieści -0.6927
+-0.7482 trzydzieści czterdzieści -0.6135
+-99.9990 trzydzieści cztery 0.0000
+-99.9990 trzydzieści dwa 0.0000
+-99.9990 trzydzieści dziewięć 0.0000
+-99.9990 trzydzieści jeden 0.0000
+-99.9990 trzydzieści osiem 0.0000
+-99.9990 trzydzieści pięć 0.0000
+-99.9990 trzydzieści siedem 0.0000
+-99.9990 trzydzieści sześć 0.0000
+-99.9990 trzydzieści trzy 0.0330
+-99.9990 trzydzieści trzydzieści 0.0000
+-0.7482 trzydzieści trzynaście -0.4393
+-0.5441 trzydzieści uruchom 0.0512
+-0.6990 trzynaście </s> 1.4949
+-0.6021 trzynaście czternaście -0.5663
+-0.6021 trzynaście trzy -0.5775
+-0.6021 trzynaście wibrowanie -0.4771
+-0.3522 twarz pokaż -0.4771
+-0.3522 twarz wyłącz -0.5631
+-99.9990 uruchom uruchomić 0.0000
+-0.0512 uruchom wezwać 0.0512
+-0.0512 uruchomić trzynaście -0.6435
+-99.9990 uruchomić uśmiech 0.0000
+-99.9990 uśmiech uśmiechnięta 0.0000
+-99.9990 uśmiechnięta uśmiechniętą 0.0000
+-0.0969 uśmiechniętą buzię -0.3468
+-99.9990 uśmiechniętą uśmiechnięty 0.0000
+-99.9990 uśmiechnięty wesoła 0.0000
+-99.9990 uśmiechnij się 0.0263
+-99.9990 wesoła wesołą 0.0000
+-0.3522 wesołą minę 0.0969
+-0.3522 wesołą twarz -0.3468
+-99.9990 wesołą wesoły 0.0000
+-99.9990 wesoły wezwać 0.0000
+-99.9990 wezwać wezwij 0.0000
+-0.0512 wezwać wibrowanie -0.5721
+-0.5119 wezwij pomoc -0.4559
+-0.2109 wezwij uruchomić 0.0512
+-99.9990 wezwij wibrowanie 0.2218
+-0.3979 wibrowanie wibracje -0.7304
+-0.2730 wibrowanie wibracji -0.7570
+-1.0792 wibracje </s> 1.4949
+-0.9823 wibracje na -0.6591
+-0.7782 wibracje wezwij -0.4881
+-0.9823 wibracje wibracji -0.5306
+-0.7782 wibracje włącz -0.7705
+-0.9823 wibracje wyłącz -0.6463
+-0.7270 wibracje zmniejsz -0.7044
+-1.2041 wibracje zwiększ -0.3087
+-0.8451 wibracji </s> 1.4949
+-0.4929 wibracji na -0.8318
+-0.7482 wibracji włącz -0.6243
+-0.5441 wibracji włączyć 0.2109
+-99.9990 wibracji zgaś 0.0470
+-99.9990 wibracji zmień 0.1076
+-1.1027 włącz </s> 1.6198
+-99.9990 włącz diody 0.0000
+-0.8808 włącz maksymalne -0.5071
+-0.8808 włącz minimalne -0.5071
+-0.9777 włącz roboty -0.2341
+-0.5006 włącz wibracje -0.9420
+-1.1027 włącz włączyć 0.6368
+-99.9990 włącz wszystkie 0.0483
+-0.9777 włącz wyświetlacz -0.3010
+-99.9990 włączyć wszystkie 0.0000
+-0.0348 włączyć wyłącz -0.8775
+-99.9990 wszystkie </s> 2.0969
+-0.4337 wszystkie diody -0.5885
+-0.9777 wszystkie roboty 0.0000
+-0.3757 wszystkie włącz -0.7383
+-99.9990 wszystkie wykonać 0.0000
+-99.9990 wycisz się 0.0000
+-99.9990 wyciszcie się 0.0263
+-99.9990 wykonać wykonaj 0.0000
+-0.5119 wykonaj cztery -0.5597
+-0.5119 wykonaj pięć -0.5699
+-0.5119 wykonaj sześć -0.5399
+-99.9990 wykonaj wyłącz 0.0669
+-99.9990 wyłącz głos 0.0000
+-99.9990 wyłącz głośność 0.0000
+-0.9420 wyłącz kostkę 0.0969
+-0.9420 wyłącz pudełka -0.1249
+-0.9420 wyłącz rękaw -0.4559
+-0.9420 wyłącz wibracje -0.4771
+-99.9990 wyłącz wszystkie 0.0483
+-0.8451 wyłącz wyłączyć -0.5071
+-0.6410 wyłącz wynik -0.7782
+-1.0669 wyłącz wyświetlacz -0.2730
+-0.2430 wyłączyć wszystkie -0.6657
+-99.9990 wyłączyć wynik 0.0000
+-0.4472 wyłączyć zapal -0.6466
+-99.9990 wynik </s> 2.0969
+-0.3291 wynik dodawania -0.7501
+-0.6601 wynik odejmowania -0.5689
+-99.9990 wynik wynosi 0.0000
+-0.6021 wynik wynosić 0.0512
+-0.0512 wynosi wyłączyć -0.5351
+-99.9990 wynosi wynosić 0.0000
+-99.9990 wynosić wyświetl 0.0000
+-0.0512 wynosić zapalić -0.6478
+-0.3522 wyświetl smutną -0.3468
+-0.3522 wyświetl uśmiechniętą 0.0969
+-99.9990 wyświetl wyświetlanie 0.0000
+-99.9990 wyświetlacz </s> 2.0969
+-0.4260 wyświetlacz włącz -0.4288
+-0.3010 wyświetlacz zagraj -0.3468
+-99.9990 wyświetlanie </s> 2.0969
+-99.9990 wyświetlić zagraj 0.0000
+-99.9990 zadzwoń po 0.0000
+-0.3522 zagraj dźwięk -0.4260
+-0.3522 zagraj muzyczkę 0.0969
+-99.9990 zagraj zamiaucz 0.0000
+-0.0969 zamiaucz przedstaw 0.0969
+-99.9990 zamiaucz zapal 0.0524
+-99.9990 zapal </s> 2.0969
+-0.6892 zapal czerwone -0.7416
+-0.9445 zapal diody -0.5850
+-0.9445 zapal niebieskie -0.5528
+-1.3424 zapal się 0.0000
+-0.9445 zapal wszystkie -0.4994
+-0.7984 zapal wynosi 0.1091
+-0.9445 zapal zapalić -0.5576
+-0.9445 zapal zielone -0.5825
+-99.9990 zapalić zaszczekaj 0.0000
+-0.5563 zapalić zatrzymaj -0.5342
+-0.3522 zapalić zatrzymać -0.5721
+-0.6532 zapalić zielone -0.4856
+-0.0969 zaszczekaj zamiaucz 0.0969
+-99.9990 zaszczekaj zatrzymaj 0.1648
+-99.9990 zaświećcie się 0.0263
+-0.5798 zatrzymaj się -0.5654
+-0.4337 zatrzymaj zapal -0.7698
+-0.5006 zatrzymaj zatrzymać -0.5563
+-0.3979 zatrzymać zgaszenie -0.5563
+-0.2730 zatrzymać zgaś -0.8034
+-99.9990 zawibruj uśmiechnij 0.0000
+-0.0969 zdziwioną twarz -0.3468
+-0.2730 zgaszenie zatrzymaj -0.7035
+-0.3979 zgaszenie zgaś -0.7056
+-0.8921 zgaś czerwone -0.4864
+-0.8921 zgaś diody -0.5673
+-99.9990 zgaś kostkę 0.0000
+-0.9890 zgaś niebieskie -0.4559
+-99.9990 zgaś rękaw 0.0000
+-0.9890 zgaś wszystkie -0.4025
+-0.8129 zgaś zielone -0.6938
+-0.6880 zgaś zielony -0.7604
+-0.8921 zgaś żółte -0.5393
+-0.8325 zielone </s> 1.3979
+-1.0544 zielone czerwony -0.3917
+-0.6284 zielone diody -0.6584
+-1.0544 zielone jeden -0.3707
+-0.6284 zielone zgaszenie -0.5721
+-0.7533 zielone zielony -0.6590
+-0.9208 zielony </s> 1.6198
+-0.9208 zielony zapal -0.4247
+-0.6990 zielony zielone -0.5825
+-0.6198 zielony zmiana -0.6532
+-0.5528 zielony zmniejsz -0.7549
+-99.9990 zmiana </s> 2.0969
+-0.7782 zmiana diod -0.5390
+-0.6812 zmiana światełko -0.5663
+-0.4771 zmiana zielone -0.7866
+-0.6021 zmiana zmniejsz -0.6880
+-0.7270 zmniejsz </s> 1.3188
+-99.9990 zmniejsz ile 0.3358
+-0.8062 zmniejsz jasność -0.5306
+-0.5509 zmniejsz moc -0.6252
+-0.8062 zmniejsz wibracje -0.6088
+-0.7270 zmniejsz zmienić -0.6232
+-0.6021 zmienić światła -0.5740
+-0.3979 zmienić zmiana -0.7270
+-0.5229 zmienić zmień -0.7217
+-0.4087 zmień kolor -0.8731
+-0.6585 zmień moc -0.7501
+-0.9138 zmień światło -0.5663
+-0.9138 zmień wibracje -0.6512
+-0.9138 zmień zwiększ -0.1726
+-0.9700 zwiększ </s> 1.6198
+-0.4929 zwiększ jasność -0.6532
+-0.7482 zwiększ wibracje -0.6088
+-99.9990 zwiększ zapal 0.0524
+-0.5441 zwiększ zmienić -0.6812
+-99.9990 zwiększ zmień 0.0565
+-99.9990 zwiększ żebyś 0.0000
+-0.0969 żebyś teraz -0.3468
+-99.9990 żebyś żółte 0.0000
+-0.5119 żółte diody -0.1957
+-0.2109 żółte zwiększ -0.7570
+-99.9990 żółte żółty 0.4771
+-0.1761 żółty </s> 1.4949
+-99.9990 żółty stop 0.1249
+-99.9990 żółty zmień 0.2148
+
+\3-grams:
+-99.9990 <s> buzia buzią 
+-0.1249 <s> chciałbym żebyś 
+-0.1761 <s> ciemniej cisza 
+-0.1761 <s> czerwony czerwone 
+-99.9990 <s> czerwony czterdzieści 
+-99.9990 <s> czternaście diod 
+-0.1249 <s> cztery diod 
+-99.9990 <s> diod na 
+-99.9990 <s> diod niebieski 
+-0.1761 <s> diody zgaś 
+-99.9990 <s> dwa ile 
+-0.0969 <s> dwadzieścia dodawanie 
+-99.9990 <s> dwanaście dwóch 
+-0.1761 <s> dwanaście dziesięć 
+-0.0969 <s> dziesiąt dziewięć 
+-99.9990 <s> dziesięć dzieścia 
+-99.9990 <s> dziewięćdziesiąt sto 
+-0.0792 <s> ile to 
+-0.1761 <s> jasność jasności 
+-0.1761 <s> jeden dwa 
+-99.9990 <s> jeden jedenaście 
+-99.9990 <s> klocka klocki 
+-99.9990 <s> kostce maksymalna 
+-0.1761 <s> moc mocniej 
+-0.0969 <s> na niebieski 
+-99.9990 <s> odejmij odejmowania 
+-0.1249 <s> odejmij trzy 
+-99.9990 <s> odejmowania dziesięć 
+-0.0969 <s> odejmowania niebieskie 
+-99.9990 <s> osiem dziewięć 
+-99.9990 <s> pięćdziesiąt trzy 
+-99.9990 <s> piętnaście pomarańczowy 
+-0.1761 <s> podaj wynik 
+-99.9990 <s> rękaw pomoc 
+-99.9990 <s> rękaw rękawa 
+-99.9990 <s> robocie włącz 
+-99.9990 <s> siedemdziesiąt robot 
+-0.1761 <s> siedemnaście osiemnaście 
+-0.1761 <s> słabiej sto 
+-0.1761 <s> stop zatrzymaj 
+-0.0969 <s> szesnaście sześćdziesiąt 
+-99.9990 <s> sześć świecenie 
+-99.9990 <s> sześćdziesiąt trzydzieści 
+-99.9990 <s> to jest 
+-99.9990 <s> teraz masz 
+-0.1761 <s> trzy sześć 
+-99.9990 <s> trzy trzydzieści 
+-99.9990 <s> trzydzieści cztery 
+-99.9990 <s> uruchom uruchomić 
+-99.9990 <s> włącz maksymalne 
+-0.3979 <s> włącz wibracje 
+-99.9990 <s> włącz włączyć 
+-99.9990 <s> włącz wyświetlacz 
+-0.1761 <s> włączyć wyłącz 
+-99.9990 <s> wyłącz głośność 
+-99.9990 <s> wynosi wyłączyć 
+-0.1249 <s> wyświetl uśmiechniętą 
+-99.9990 <s> wyświetlić zagraj 
+-0.6021 <s> zapal czerwone 
+-0.6021 <s> zapal diody 
+-0.4260 <s> zapal zielone 
+-0.1761 <s> zgaś wszystkie 
+-0.3979 <s> zmień kolor 
+-0.6990 <s> zmień moc 
+-0.5229 <s> zmień światło 
+-0.3979 <s> zwiększ jasność 
+-0.3979 <s> zwiększ wibracje 
+-0.0969 <s> żółte zwiększ 
+-99.9990 </s> <s> buzia 
+-1.6163 </s> <s> chciałbym 
+-1.7924 </s> <s> ciemniej 
+-1.6163 </s> <s> czerwony 
+-99.9990 </s> <s> czternaście 
+-1.6163 </s> <s> cztery 
+-1.7924 </s> <s> diod 
+-1.7924 </s> <s> diody 
+-99.9990 </s> <s> dwa 
+-1.4914 </s> <s> dwadzieścia 
+-1.6163 </s> <s> dwanaście 
+-1.4914 </s> <s> dziesiąt 
+-99.9990 </s> <s> dziesięć 
+-99.9990 </s> <s> dziewięćdziesiąt 
+-1.3945 </s> <s> ile 
+-1.7924 </s> <s> jasność 
+-1.6163 </s> <s> jeden 
+-99.9990 </s> <s> klocka 
+-99.9990 </s> <s> kostce 
+-1.7924 </s> <s> moc 
+-1.4914 </s> <s> na 
+-1.4914 </s> <s> odejmij 
+-1.3945 </s> <s> odejmowania 
+-99.9990 </s> <s> osiem 
+-99.9990 </s> <s> pięćdziesiąt 
+-99.9990 </s> <s> piętnaście 
+-1.7924 </s> <s> podaj 
+-1.7924 </s> <s> rękaw 
+-99.9990 </s> <s> robocie 
+-99.9990 </s> <s> siedemdziesiąt 
+-1.7924 </s> <s> siedemnaście 
+-1.7924 </s> <s> słabiej 
+-1.7924 </s> <s> stop 
+-1.4914 </s> <s> szesnaście 
+-99.9990 </s> <s> sześć 
+-99.9990 </s> <s> sześćdziesiąt 
+-99.9990 </s> <s> to 
+-99.9990 </s> <s> teraz 
+-1.6163 </s> <s> trzy 
+-99.9990 </s> <s> trzydzieści 
+-99.9990 </s> <s> uruchom 
+-1.3945 </s> <s> włącz 
+-1.7924 </s> <s> włączyć 
+-99.9990 </s> <s> wyłącz 
+-99.9990 </s> <s> wynosi 
+-1.6163 </s> <s> wyświetl 
+-99.9990 </s> <s> wyświetlić 
+-1.3153 </s> <s> zapal 
+-1.7924 </s> <s> zgaś 
+-1.1392 </s> <s> zmień 
+-1.4914 </s> <s> zwiększ 
+-1.4914 </s> <s> żółte 
+-99.9990 buzia buzią buzie 
+-99.9990 buzią buzie buzię 
+-99.9990 buzie buzię chciałbym 
+-99.9990 buzię chciałbym ciemniej 
+-0.1249 buzię pokaż wesołą 
+-0.1249 buzię wyświetl smutną 
+-99.9990 chciałbym ciemniej cisza 
+-0.1249 chciałbym żebyś teraz 
+-0.0792 ciemniej cisza ciszej 
+-0.0580 ciemniej ciszej czerwony 
+-0.0580 cisza ciemniej ciszej 
+-99.9990 cisza ciszej coś 
+-0.0969 cisza ciszej czerwone 
+-99.9990 ciszej coś czerwone 
+-0.1249 ciszej czerwone czerwony 
+-99.9990 ciszej czerwone moc 
+-99.9990 ciszej czerwony </s> 
+-0.0669 ciszej czerwony czternaście 
+-99.9990 coś czerwone czerwony 
+-0.1249 coś jak się 
+-0.0580 czerwone cisza ciemniej 
+-0.0969 czerwone czerwony czterdzieści 
+-0.7782 czerwone diody </s> 
+-99.9990 czerwone diody stop 
+-0.4771 czerwone diody zapal 
+-0.4771 czerwone diody zgaś 
+-99.9990 czerwone diody zmień 
+-99.9990 czerwone moc mocniej 
+-0.0969 czerwone niebieskie niebieski 
+-99.9990 czerwony </s> <s> 
+-0.0969 czerwony czerwone niebieskie 
+-0.0792 czerwony czterdzieści czternaście 
+-0.0669 czerwony czternaście diod 
+-99.9990 czerwony zmiana </s> 
+-0.1249 czerwony zmiana diod 
+-0.0969 czerwony zmień kolor 
+-0.0580 czterdzieści czerwone cisza 
+-99.9990 czterdzieści czterdzieści jeden 
+-0.2218 czterdzieści czternaście </s> 
+-99.9990 czterdzieści czternaście cztery 
+-99.9990 czterdzieści czternaście włącz 
+-99.9990 czterdzieści cztery czterdzieści 
+-99.9990 czterdzieści dwa czterdzieści 
+-99.9990 czterdzieści dziewięć pięćdziesiąt 
+-99.9990 czterdzieści jeden czterdzieści 
+-99.9990 czterdzieści osiem czterdzieści 
+-99.9990 czterdzieści pięć czterdzieści 
+-0.0969 czterdzieści pięćdziesiąt sześćdziesiąt 
+-99.9990 czterdzieści siedem czterdzieści 
+-99.9990 czterdzieści sześć czterdzieści 
+-99.9990 czterdzieści trzy czterdzieści 
+-0.1249 czternaście </s> <s> 
+-99.9990 czternaście cztery diod 
+-0.0580 czternaście diod diody 
+-0.0969 czternaście piętnaście szesnaście 
+-99.9990 czternaście włącz wibracje 
+-0.0580 cztery czterdzieści czerwone 
+-99.9990 cztery czterdzieści pięć 
+-0.0792 cztery diod dioda 
+-99.9990 cztery dwadzieścia pięć 
+-0.0580 cztery minus pięć 
+-0.0580 cztery odjąć pięć 
+-0.1249 cztery ostatnie kroki 
+-0.0969 cztery pięć sześć 
+-99.9990 cztery pięćdziesiąt pięć 
+-99.9990 cztery sześćdziesiąt pięć 
+-99.9990 cztery trzydzieści pięć 
+-0.0792 diod dioda diody 
+-0.0580 diod diody dodawania 
+-0.6284 diod na czerwony 
+-0.6284 diod na niebieski 
+-0.6284 diod na zielony 
+-0.6284 diod na żółty 
+-0.0969 diod niebieski zmienić 
+-0.0580 dioda cztery czterdzieści 
+-99.9990 dioda diody dodać 
+-0.0969 dioda diody dwa 
+-0.0512 diody </s> <s> 
+-99.9990 diody dodać dodaj 
+-0.0580 diody dodawania dwa 
+-0.0969 diody dwa dwadzieścia 
+-99.9990 diody stop zatrzymaj 
+-0.1249 diody wezwij pomoc 
+-0.3979 diody zapal czerwone 
+-0.5740 diody zapal niebieskie 
+-0.5740 diody zapal wszystkie 
+-0.6284 diody zgaś czerwone 
+-0.6284 diody zgaś diody 
+-0.6284 diody zgaś niebieskie 
+-99.9990 diody zgaś wszystkie 
+-0.6284 diody zgaś żółte 
+-99.9990 diody zmień kolor 
+-99.9990 diody zmień moc 
+-0.1761 diody zwiększ wibracje 
+-0.0580 dodać dioda cztery 
+-99.9990 dodać dodaj dodawania 
+-0.0580 dodać dwa jaki 
+-99.9990 dodaj dodawania dodawanie 
+-0.0580 dodaj dziesięć i 
+-99.9990 dodawania dodawanie dwa 
+-0.0580 dodawania dwa dwanaście 
+-99.9990 dodawania ile </s> 
+-0.0669 dodawania ile to 
+-0.0580 dodawania liczby trzy 
+-0.0580 dodawanie dodać dioda 
+-99.9990 dodawanie dwa dwie 
+-0.1249 dwa </s> <s> 
+-99.9990 dwa czterdzieści trzy 
+-0.0580 dwa dodać dwa 
+-99.9990 dwa dwie dwadzieścia 
+-0.2218 dwa dwadzieścia </s> 
+-99.9990 dwa dwadzieścia dwanaście 
+-99.9990 dwa dwadzieścia trzy 
+-0.3010 dwa dwanaście </s> 
+-0.4260 dwa dwanaście dziesiąt 
+-0.6021 dwa dzieścia </s> 
+-99.9990 dwa dzieścia ciemniej 
+-99.9990 dwa dzieścia dwanaście 
+-0.3010 dwa dzieścia zmień 
+-0.0580 dwa ile to 
+-0.0580 dwa jaki jest 
+-99.9990 dwa plus </s> 
+-0.0669 dwa plus dwa 
+-0.0792 dwa podaj wynik 
+-99.9990 dwa sześćdziesiąt trzy 
+-0.0969 dwa trzy cztery 
+-99.9990 dwa trzydzieści trzy 
+-99.9990 dwie dwadzieścia dwanaście 
+-0.1249 dwie ostatnie funkcje 
+-0.0580 dwadzieścia </s> <s> 
+-99.9990 dwadzieścia cztery dwadzieścia 
+-0.0580 dwadzieścia dodawanie dodać 
+-99.9990 dwadzieścia dwa dwadzieścia 
+-99.9990 dwadzieścia dwanaście dwóch 
+-99.9990 dwadzieścia dwanaście dziesięć 
+-99.9990 dwadzieścia dziesiąt dziesięć 
+-99.9990 dwadzieścia dziewięć trzydzieści 
+-99.9990 dwadzieścia jeden dwadzieścia 
+-0.0969 dwadzieścia odejmij trzy 
+-99.9990 dwadzieścia osiem dwadzieścia 
+-99.9990 dwadzieścia pięć dwadzieścia 
+-99.9990 dwadzieścia siedem dwadzieścia 
+-99.9990 dwadzieścia sześć dwadzieścia 
+-99.9990 dwadzieścia trzy dwadzieścia 
+-0.0969 dwadzieścia trzydzieści czterdzieści 
+-0.0969 dwanaście </s> <s> 
+-0.1761 dwanaście dwóch dwadzieścia 
+-0.1249 dwanaście dziesiąt dziewięć 
+-0.0969 dwanaście dziesięć dziewięć 
+-0.0969 dwanaście trzynaście czternaście 
+-99.9990 dwóch dwadzieścia </s> 
+-99.9990 dwóch dwadzieścia dziesiąt 
+-0.0580 dwóch ile jest 
+-0.0669 dzieścia </s> <s> 
+-99.9990 dzieścia ciemniej cisza 
+-0.1249 dzieścia dwadzieścia dodawanie 
+-99.9990 dzieścia dwanaście dziesięć 
+-0.0969 dzieścia zmień wibracje 
+-0.1761 dziesiąt </s> <s> 
+-99.9990 dziesiąt cztery diod 
+-99.9990 dziesiąt dziesięć dziewięć 
+-0.0580 dziesiąt dziewięć dziewiętnaście 
+-0.1761 dziesiąt trzy trzydzieści 
+-99.9990 dziesiąt włącz wibracje 
+-0.3010 dziesięć dzieścia </s> 
+-0.4260 dziesięć dzieścia dwadzieścia 
+-0.0792 dziesięć dziewięć dziewięćdziesiąt 
+-0.3310 dziesięć i dwa 
+-0.3310 dziesięć i dwadzieścia 
+-0.0969 dziesięć jedenaście dwanaście 
+-0.1249 dziesięć ostatnich funkcji 
+-99.9990 dziewięć czterdzieści czterdzieści 
+-0.0969 dziewięć dziesięć jedenaście 
+-0.3010 dziewięć dziewięćdziesiąt dziewiętnaście 
+-0.3979 dziewięć dziewięćdziesiąt zmień 
+-0.0580 dziewięć dziewiętnaście głośniej 
+-99.9990 dziewięć pięćdziesiąt pięćdziesiąt 
+-99.9990 dziewięć siedemdziesiąt </s> 
+-99.9990 dziewięć sześćdziesiąt sześćdziesiąt 
+-99.9990 dziewięć trzydzieści trzydzieści 
+-99.9990 dziewięćdziesiąt </s> <s> 
+-0.0669 dziewięćdziesiąt dziesięć dzieścia 
+-99.9990 dziewięćdziesiąt dziewiętnaście dźwięk 
+-0.0969 dziewięćdziesiąt dziewiętnaście głośniej 
+-0.1249 dziewięćdziesiąt sto </s> 
+-99.9990 dziewięćdziesiąt sto ile 
+-0.0969 dziewięćdziesiąt zmień moc 
+-0.0969 dziewiętnaście dwadzieścia trzydzieści 
+-99.9990 dziewiętnaście dźwięk funkcja 
+-0.4771 dziewiętnaście głośniej głośność 
+-0.2341 dziewiętnaście głośniej i 
+-99.9990 dźwięk dziewięćdziesiąt </s> 
+-0.0669 dźwięk dziewięćdziesiąt dziesięć 
+-99.9990 dźwięk funkcja funkcje 
+-0.1249 dźwięk zaszczekaj zamiaucz 
+-99.9990 funkcja funkcje funkcji 
+-99.9990 funkcje funkcji głośniej 
+-0.1249 funkcje powtórz dziesięć 
+-99.9990 funkcji głośniej głośność 
+-0.3680 funkcji wykonaj cztery 
+-0.3680 funkcji wykonaj sześć 
+-99.9990 głos </s> <s> 
+-99.9990 głośniej głośność i 
+-0.0969 głośniej głośność jaśniej 
+-0.0580 głośniej i jasność 
+-0.0580 głośność dźwięk dziewięćdziesiąt 
+-99.9990 głośność i ile 
+-0.3979 głośność jaśniej </s> 
+-0.3979 głośność jaśniej jasność 
+-99.9990 głośność zawibruj uśmiechnij 
+-0.6021 i dwa </s> 
+-0.2041 i dwa podaj 
+-0.4260 i dwadzieścia </s> 
+-0.3010 i dwadzieścia odejmij 
+-99.9990 i ile imie 
+-0.0580 i jasność jaśniej 
+-0.0580 i pięć dodaj 
+-99.9990 ile </s> <s> 
+-0.0580 ile głośność dźwięk 
+-99.9990 ile imie imię 
+-0.0580 ile jest cztery 
+-0.0212 ile to jest 
+-99.9990 imie imię jak 
+-0.1249 imię </s> <s> 
+-99.9990 imię jak jaki 
+-0.1249 imię powiedz coś 
+-99.9990 jak jaki jasność 
+-0.0669 jak masz na 
+-0.0969 jak się nazywasz 
+-99.9990 jaki jasność jasności 
+-0.0300 jaki jest wynik 
+-99.9990 jasność jasności </s> 
+-99.9990 jasność jasności jaśniej 
+-0.2218 jasność jasności jeden 
+-0.0580 jasność jaśniej jedenaście 
+-0.0512 jasność świecenia zmniejsz 
+-0.0969 jasność zwiększ jasność 
+-99.9990 jasności </s> <s> 
+-0.0580 jasności ile głośność 
+-99.9990 jasności jaśniej jeden 
+-0.1249 jasności jeden jedenaście 
+-0.1761 jaśniej </s> <s> 
+-0.1761 jaśniej jasność jasności 
+-99.9990 jaśniej jeden jedenaście 
+-0.0580 jaśniej jedenaście klocek 
+-99.9990 jeden czterdzieści dwa 
+-0.0969 jeden dwa trzy 
+-99.9990 jeden dwadzieścia dwa 
+-0.0580 jeden jasności ile 
+-99.9990 jeden jedenaście jest 
+-0.0969 jeden jedenaście kolor 
+-99.9990 jeden pięćdziesiąt dwa 
+-99.9990 jeden sześćdziesiąt dwa 
+-99.9990 jeden trzydzieści dwa 
+-0.0969 jedenaście dwanaście trzynaście 
+-99.9990 jedenaście jest klocek 
+-0.0580 jedenaście klocek klocki 
+-0.0969 jedenaście kolor kolory 
+-0.3310 jest cztery minus 
+-0.3310 jest cztery odjąć 
+-0.3310 jest dwa dodać 
+-0.3310 jest dwa plus 
+-0.0580 jest jeden jasności 
+-99.9990 jest klocek </s> 
+-99.9990 jest wynik </s> 
+-0.3010 jest wynik dodawania 
+-0.3680 jest wynik odejmowania 
+-99.9990 klocek </s> <s> 
+-0.0580 klocek klocki kolory 
+-0.0580 klocka jest jeden 
+-99.9990 klocka klocki kolor 
+-99.9990 klocki kolor kolory 
+-99.9990 klocki kolory </s> 
+-0.0669 klocki kolory kostce 
+-99.9990 kolor </s> <s> 
+-0.0280 kolor diod na 
+-0.0580 kolor klocka jest 
+-99.9990 kolor kolory komend 
+-0.0969 kolor kolory maksymalna 
+-99.9990 kolory </s> <s> 
+-99.9990 kolory komend komenda 
+-0.0669 kolory kostce maksymalna 
+-0.0969 kolory maksymalna minimalna 
+-99.9990 komend komenda komendy 
+-0.1249 komend włącz roboty 
+-99.9990 komenda komendy kostka 
+-99.9990 komendy kostka kostce 
+-99.9990 kostce kostki liczba 
+-0.0580 kostce maksymalna masz 
+-0.0580 kostka kolor klocka 
+-99.9990 kostka kostce kostki 
+-0.1249 kostkę wyłącz pudełka 
+-99.9990 kostkę zgaś rękaw 
+-0.0580 kostki kostka kolor 
+-99.9990 kostki liczba liczbami 
+-99.9990 kostko jak się 
+-99.9990 kostko zapal się 
+-99.9990 kroki </s> <s> 
+-0.1761 kroki teraz masz 
+-99.9990 liczba liczbami liczbą 
+-99.9990 liczbami liczbą liczby 
+-99.9990 liczbą liczby maksymalna 
+-99.9990 liczby maksymalna maksymalne 
+-0.0580 liczby trzy i 
+-99.9990 maksymalna maksymalne masz 
+-0.0580 maksymalna masz minimalne 
+-0.3010 maksymalna minimalna </s> 
+-99.9990 maksymalna minimalna ciemniej 
+-99.9990 maksymalna minimalna moc 
+-0.0580 maksymalne kostki kostka 
+-99.9990 maksymalne masz minimalna 
+-0.0969 maksymalne wibracje włącz 
+-99.9990 masz minimalna minimalne 
+-0.0580 masz minimalne moc 
+-0.0669 masz na imię 
+-0.1249 masz zapalić zielone 
+-0.1249 minę pokaż smutną 
+-0.1761 minimalna </s> <s> 
+-99.9990 minimalna ciemniej cisza 
+-0.0580 minimalna maksymalne kostki 
+-99.9990 minimalna minimalne minus 
+-99.9990 minimalna moc mocniej 
+-99.9990 minimalne minus moc 
+-0.3010 minimalne moc </s> 
+-0.4260 minimalne moc na 
+-0.3979 minimalne wibracje </s> 
+-0.3979 minimalne wibracje zwiększ 
+-0.1249 minkę pokaż wesołą 
+-0.0580 minus minimalna maksymalne 
+-99.9990 minus moc mocniej 
+-0.3010 minus pięć </s> 
+-0.4260 minus pięć żółte 
+-0.1249 muzyczkę zagraj dźwięk 
+-0.0969 moc </s> <s> 
+-99.9990 moc mocniej na 
+-0.0969 moc mocniej niebieski 
+-0.1249 moc na niebieski 
+-0.0969 moc świecenia na 
+-0.7782 moc wibracji </s> 
+-0.1761 moc wibracji na 
+-99.9990 moc wibracji zgaś 
+-99.9990 moc wibracji zmień 
+-0.0580 mocniej minus minimalna 
+-99.9990 mocniej na nazywasz 
+-0.0969 mocniej niebieski niebieskie 
+-0.3522 na czerwony zmiana 
+-0.3522 na czerwony zmień 
+-0.0512 na dwa dzieścia 
+-0.0969 na dziewięć dziewięćdziesiąt 
+-0.3680 na imię </s> 
+-0.3680 na imię powiedz 
+-99.9990 na nazywasz nie 
+-0.2341 na niebieski odejmij 
+-0.4771 na niebieski zmień 
+-0.0969 na pięć dziesiąt 
+-0.3979 na zielony </s> 
+-0.3979 na zielony zapal 
+-0.3010 na żółty </s> 
+-99.9990 na żółty stop 
+-99.9990 na żółty zmień 
+-0.1249 nazywasz jak masz 
+-99.9990 nazywasz nie niebieski 
+-99.9990 nazywasz robocik robociki 
+-0.0580 nie mocniej minus 
+-99.9990 nie niebieski niebieskie 
+-99.9990 niebieski niebieskie od 
+-0.0969 niebieski niebieskie osiem 
+-0.0580 niebieski odejmij odejmowanie 
+-0.0969 niebieski pomarańczowe pomarańczowy 
+-0.0969 niebieski zmienić światła 
+-0.0969 niebieski zmień kolor 
+-99.9990 niebieskie </s> <s> 
+-0.3010 niebieskie diody zapal 
+-0.4260 niebieskie diody zgaś 
+-0.0580 niebieskie nie mocniej 
+-0.0969 niebieskie niebieski pomarańczowe 
+-99.9990 niebieskie od </s> 
+-0.0969 niebieskie osiem osiemdziesiąt 
+-99.9990 od </s> <s> 
+-0.0580 od dwóch ile 
+-99.9990 odejmij odejmowania odejmowanie 
+-0.0580 odejmij odejmowanie osiemdziesiąt 
+-0.0580 odejmij trzy od 
+-0.0580 odejmowania dziesięć i 
+-0.0580 odejmowania niebieskie nie 
+-99.9990 odejmowania odejmowanie odjąć 
+-99.9990 odejmowanie odjąć osiem 
+-0.0580 odejmowanie osiemdziesiąt pięć 
+-99.9990 odjąć osiem osiemdziesiąt 
+-0.0580 odjąć pięć jaki 
+-0.0969 osiem </s> <s> 
+-99.9990 osiem czterdzieści dziewięć 
+-99.9990 osiem dwadzieścia dziewięć 
+-0.0969 osiem dziewięć dziesięć 
+-0.1249 osiem odejmowania niebieskie 
+-0.0792 osiem osiemdziesiąt osiemnaście 
+-99.9990 osiem pięćdziesiąt dziewięć 
+-99.9990 osiem sześćdziesiąt dziewięć 
+-99.9990 osiem trzydzieści dziewięć 
+-99.9990 osiemdziesiąt </s> <s> 
+-0.1249 osiemdziesiąt dziewięćdziesiąt sto 
+-99.9990 osiemdziesiąt osiemnaście ostatni 
+-0.0969 osiemdziesiąt osiemnaście pięć 
+-99.9990 osiemdziesiąt pięć </s> 
+-0.0669 osiemdziesiąt pięć piętnaście 
+-0.0969 osiemnaście dziewiętnaście dwadzieścia 
+-0.3010 osiemnaście osiem </s> 
+-0.4260 osiemnaście osiem odejmowania 
+-99.9990 osiemnaście ostatni ostatnich 
+-0.0969 osiemnaście pięć pięćdziesiąt 
+-99.9990 ostatni ostatnich ostatnie 
+-0.0669 ostatnich funkcji wykonaj 
+-0.1249 ostatnich komend włącz 
+-99.9990 ostatnich ostatnie pięć 
+-0.1249 ostatnie funkcje powtórz 
+-99.9990 ostatnie kroki </s> 
+-0.1761 ostatnie kroki teraz 
+-99.9990 ostatnie pięć pięćdziesiąt 
+-0.0792 pięć </s> <s> 
+-99.9990 pięć czterdzieści sześć 
+-0.0580 pięć dodaj dziesięć 
+-99.9990 pięć dwadzieścia sześć 
+-0.3010 pięć dziesiąt </s> 
+-99.9990 pięć dziesiąt cztery 
+-99.9990 pięć dziesiąt włącz 
+-0.0580 pięć jaki jest 
+-0.1249 pięć ostatnich funkcji 
+-0.0792 pięć pięćdziesiąt piętnaście 
+-99.9990 pięć pięćdziesiąt sześć 
+-0.0669 pięć piętnaście pomarańczowy 
+-0.0969 pięć sześć siedem 
+-99.9990 pięć sześćdziesiąt sześć 
+-99.9990 pięć trzydzieści sześć 
+-0.1249 pięć żółte zwiększ 
+-99.9990 pięćdziesiąt cztery pięćdziesiąt 
+-99.9990 pięćdziesiąt dwa </s> 
+-99.9990 pięćdziesiąt dziewięć sześćdziesiąt 
+-99.9990 pięćdziesiąt jeden pięćdziesiąt 
+-99.9990 pięćdziesiąt osiem pięćdziesiąt 
+-0.0580 pięćdziesiąt osiemnaście osiem 
+-99.9990 pięćdziesiąt pięć pięćdziesiąt 
+-99.9990 pięćdziesiąt pięćdziesiąt jeden 
+-99.9990 pięćdziesiąt piętnaście plus 
+-0.0969 pięćdziesiąt piętnaście pomarańczowe 
+-99.9990 pięćdziesiąt siedem pięćdziesiąt 
+-99.9990 pięćdziesiąt sześć pięćdziesiąt 
+-0.0969 pięćdziesiąt sześćdziesiąt siedemdziesiąt 
+-99.9990 pięćdziesiąt trzy pięćdziesiąt 
+-99.9990 piętnaście plus podać 
+-0.0580 piętnaście pomarańczowy pomocy 
+-0.0969 piętnaście pomarańczowe pomarańczowy 
+-0.3979 piętnaście szesnaście </s> 
+-0.3979 piętnaście szesnaście siedemnaście 
+-99.9990 plus </s> <s> 
+-0.0669 plus dwa ile 
+-99.9990 plus podać podaj 
+-99.9990 po pomoc wycisz 
+-99.9990 podać podaj pokaż 
+-99.9990 podaj pokaż pomarańczowy 
+-0.0580 podaj wynik dodawania 
+-99.9990 pokaż pomarańczowy pomarańczowe 
+-0.1249 pokaż smutną minkę 
+-0.3680 pokaż wesołą minę 
+-0.3680 pokaż wesołą twarz 
+-0.1249 pokaż zdziwioną twarz 
+-99.9990 pomarańczowy pomarańczowe pomoc 
+-0.0580 pomarańczowy pomocy rękawa 
+-0.0969 pomarańczowy siedem siedemdziesiąt 
+-0.0969 pomarańczowy zielony zielone 
+-0.0969 pomarańczowy zmiana światełko 
+-0.0580 pomarańczowe pięćdziesiąt osiemnaście 
+-0.3522 pomarańczowe pomarańczowy siedem 
+-0.3522 pomarańczowe pomarańczowy zielony 
+-99.9990 pomarańczowe pomoc pomocy 
+-0.0580 pomoc pomarańczowe pięćdziesiąt 
+-99.9990 pomoc pomocy powiedz 
+-99.9990 pomoc wycisz się 
+-0.1249 pomoc wykonaj pięć 
+-99.9990 pomocy powiedz powtórzył 
+-0.0580 pomocy rękawa siedem 
+-0.1249 powiedz coś jak 
+-99.9990 powiedz powtórzył przedstaw 
+-0.1249 powtórz dziesięć ostatnich 
+-0.1249 powtórzył dwie ostatnie 
+-99.9990 powtórzył przedstaw pudełka 
+-99.9990 przedstaw pudełka pudełkach 
+-0.1249 przedstaw się jak 
+-0.1249 pudełka </s> <s> 
+-99.9990 pudełka pudełkach pudełkami 
+-99.9990 pudełka zaświećcie się 
+-99.9990 pudełkach pudełkami pudełko 
+-99.9990 pudełkami pudełko </s> 
+-99.9990 pudełko </s> <s> 
+-0.0580 rękaw pomoc pomarańczowe 
+-99.9990 rękaw rękawa robot 
+-99.9990 rękaw rękawie zapal 
+-0.1249 rękaw wyłącz kostkę 
+-99.9990 rękawa robot roboty 
+-0.0580 rękawa siedem siedemnaście 
+-99.9990 rękawie zapal się 
+-99.9990 robocie włącz diody 
+-99.9990 robocik robociki robociku 
+-99.9990 robociki robociku dwadzieścia 
+-99.9990 robociku dwadzieścia jeden 
+-99.9990 robot </s> <s> 
+-0.0669 robot rękaw pomoc 
+-99.9990 robot roboty siedem 
+-99.9990 roboty siedem siedemdziesiąt 
+-99.9990 roboty włącz wszystkie 
+-0.1249 roboty wyłącz rękaw 
+-99.9990 roboty zadzwoń po 
+-99.9990 siedem </s> <s> 
+-99.9990 siedem czterdzieści osiem 
+-99.9990 siedem dwadzieścia osiem 
+-0.1249 siedem osiem dziewięć 
+-99.9990 siedem pięćdziesiąt osiem 
+-0.0792 siedem siedemdziesiąt siedemnaście 
+-0.0580 siedem siedemnaście słabiej 
+-99.9990 siedem sześćdziesiąt osiem 
+-99.9990 siedem trzydzieści osiem 
+-99.9990 siedemdziesiąt </s> <s> 
+-99.9990 siedemdziesiąt osiemdziesiąt </s> 
+-0.1249 siedemdziesiąt osiemdziesiąt dziewięćdziesiąt 
+-99.9990 siedemdziesiąt robot </s> 
+-0.0669 siedemdziesiąt robot rękaw 
+-0.0792 siedemdziesiąt siedemnaście się 
+-0.0969 siedemnaście osiemnaście dziewiętnaście 
+-0.4771 siedemnaście się </s> 
+-0.3010 siedemnaście się słabiej 
+-0.0580 siedemnaście słabiej stop 
+-0.0792 się </s> <s> 
+-0.1249 się jak masz 
+-99.9990 się kostko jak 
+-99.9990 się kostko zapal 
+-0.1249 się nazywasz jak 
+-99.9990 się nazywasz robocik 
+-99.9990 się pudełka zaświećcie 
+-0.0669 się siedemdziesiąt robot 
+-99.9990 się słabiej smutna 
+-0.1761 się słabiej sto 
+-99.9990 się wyciszcie się 
+-99.9990 się wyłącz głos 
+-99.9990 się wyłącz wszystkie 
+-99.9990 się zgaś kostkę 
+-0.1761 się zmień kolor 
+-99.9990 słabiej smutna smutną 
+-0.0969 słabiej sto stop 
+-0.0580 słabiej stop światełko 
+-99.9990 smutna smutną smutny 
+-0.1249 smutną buzię pokaż 
+-0.1249 smutną minkę pokaż 
+-99.9990 smutną smutny sto 
+-99.9990 smutny sto stop 
+-0.1249 sto </s> <s> 
+-99.9990 sto ile to 
+-99.9990 sto się </s> 
+-0.0669 sto się siedemdziesiąt 
+-0.0792 sto stop światła 
+-0.0792 stop światła światełko 
+-0.0580 stop światełko świecenia 
+-0.0969 stop zatrzymaj się 
+-0.0969 światła pomarańczowy zmiana 
+-0.0580 światła sto się 
+-0.0792 światła światełko światło 
+-99.9990 światełko światło świecenia 
+-0.0969 światełko światło świecenie 
+-0.3010 światełko świecenia </s> 
+-0.4260 światełko świecenia szesnaście 
+-0.3979 światełko zielone </s> 
+-0.3979 światełko zielone czerwony 
+-0.0969 światło na czerwony 
+-0.0580 światło światła sto 
+-99.9990 światło świecenia świecenie 
+-0.0969 światło świecenie szesnaście 
+-0.0969 świecenia </s> <s> 
+-0.0969 świecenia na dwa 
+-99.9990 świecenia świecenie szesnaście 
+-99.9990 świecenia szesnaście </s> 
+-0.1761 świecenia szesnaście sześćdziesiąt 
+-0.3522 świecenia zmniejsz jasność 
+-0.3522 świecenia zmniejsz moc 
+-0.0580 świecenie światło światła 
+-0.0792 świecenie szesnaście sześć 
+-0.1249 szesnaście </s> <s> 
+-0.1761 szesnaście siedemnaście osiemnaście 
+-0.4771 szesnaście sześć sześć 
+-0.3010 szesnaście sześć sześćdziesiąt 
+-0.0669 szesnaście sześćdziesiąt trzydzieści 
+-99.9990 sześć czterdzieści siedem 
+-99.9990 sześć dwadzieścia siedem 
+-0.1761 sześć dziesiąt trzy 
+-0.1249 sześć ostatnich komend 
+-99.9990 sześć pięćdziesiąt siedem 
+-99.9990 sześć siedem </s> 
+-0.1249 sześć siedem osiem 
+-0.0580 sześć świecenie światło 
+-0.1761 sześć sześć dziesiąt 
+-99.9990 sześć sześćdziesiąt </s> 
+-99.9990 sześć sześćdziesiąt siedem 
+-99.9990 sześć sześćdziesiąt te 
+-99.9990 sześć sześćdziesiąt trzy 
+-99.9990 sześć trzydzieści siedem 
+-99.9990 sześćdziesiąt </s> <s> 
+-99.9990 sześćdziesiąt cztery sześćdziesiąt 
+-99.9990 sześćdziesiąt dwa sześćdziesiąt 
+-99.9990 sześćdziesiąt dziewięć siedemdziesiąt 
+-99.9990 sześćdziesiąt jeden sześćdziesiąt 
+-99.9990 sześćdziesiąt osiem sześćdziesiąt 
+-99.9990 sześćdziesiąt pięć sześćdziesiąt 
+-99.9990 sześćdziesiąt siedem sześćdziesiąt 
+-0.0969 sześćdziesiąt siedemdziesiąt osiemdziesiąt 
+-99.9990 sześćdziesiąt sześć sześćdziesiąt 
+-99.9990 sześćdziesiąt sześćdziesiąt jeden 
+-99.9990 sześćdziesiąt te ta 
+-99.9990 sześćdziesiąt trzy sześćdziesiąt 
+-99.9990 sześćdziesiąt trzy trzydzieści 
+-0.0580 sześćdziesiąt trzydzieści uruchom 
+-99.9990 ta to teraz 
+-99.9990 te ta to 
+-0.4973 to jest cztery 
+-0.1963 to jest dwa 
+-99.9990 to teraz trzy 
+-0.1249 teraz masz zapalić 
+-0.1249 teraz powtórzył dwie 
+-99.9990 teraz trzy trzydzieści 
+-0.1761 trzy </s> <s> 
+-99.9990 trzy czterdzieści cztery 
+-0.0969 trzy cztery pięć 
+-99.9990 trzy dwadzieścia cztery 
+-0.0580 trzy i pięć 
+-0.0580 trzy od dwóch 
+-99.9990 trzy pięćdziesiąt cztery 
+-0.0669 trzy sześć świecenie 
+-99.9990 trzy sześćdziesiąt cztery 
+-0.0792 trzy trzydzieści trzynaście 
+-0.0969 trzydzieści czterdzieści pięćdziesiąt 
+-99.9990 trzydzieści cztery trzydzieści 
+-99.9990 trzydzieści dwa trzydzieści 
+-99.9990 trzydzieści dziewięć czterdzieści 
+-99.9990 trzydzieści jeden trzydzieści 
+-99.9990 trzydzieści osiem trzydzieści 
+-99.9990 trzydzieści pięć trzydzieści 
+-99.9990 trzydzieści siedem trzydzieści 
+-99.9990 trzydzieści sześć trzydzieści 
+-99.9990 trzydzieści trzy </s> 
+-99.9990 trzydzieści trzydzieści jeden 
+-99.9990 trzydzieści trzynaście </s> 
+-0.0969 trzydzieści trzynaście wibrowanie 
+-0.0580 trzydzieści uruchom wezwać 
+-0.1249 trzynaście </s> <s> 
+-0.0969 trzynaście czternaście piętnaście 
+-99.9990 trzynaście trzy </s> 
+-0.0969 trzynaście trzy sześć 
+-0.0969 trzynaście wibrowanie wibracje 
+-0.1249 twarz pokaż zdziwioną 
+-0.1249 twarz wyłącz wyświetlacz 
+-99.9990 uruchom uruchomić uśmiech 
+-0.0580 uruchom wezwać wibrowanie 
+-0.6021 uruchomić trzynaście </s> 
+-0.2041 uruchomić trzynaście trzy 
+-99.9990 uruchomić uśmiech uśmiechnięta 
+-99.9990 uśmiech uśmiechnięta uśmiechniętą 
+-99.9990 uśmiechnięta uśmiechniętą uśmiechnięty 
+-0.1249 uśmiechniętą buzię wyświetl 
+-99.9990 uśmiechniętą uśmiechnięty wesoła 
+-99.9990 uśmiechnięty wesoła wesołą 
+-99.9990 uśmiechnij się kostko 
+-99.9990 wesoła wesołą wesoły 
+-0.1249 wesołą minę pokaż 
+-0.1249 wesołą twarz pokaż 
+-99.9990 wesołą wesoły wezwać 
+-99.9990 wesoły wezwać wezwij 
+-99.9990 wezwać wezwij wibrowanie 
+-0.0580 wezwać wibrowanie wibracji 
+-0.1249 wezwij pomoc wykonaj 
+-0.0580 wezwij uruchomić trzynaście 
+-99.9990 wezwij wibrowanie wibracje 
+-0.0792 wibrowanie wibracje wibracji 
+-0.0580 wibrowanie wibracji włączyć 
+-0.1249 wibracje </s> <s> 
+-0.0969 wibracje na pięć 
+-0.0580 wibracje wezwij uruchomić 
+-99.9990 wibracje wibracji </s> 
+-0.0969 wibracje wibracji włącz 
+-0.4260 wibracje włącz maksymalne 
+-0.3010 wibracje włącz minimalne 
+-0.0969 wibracje wyłącz wibracje 
+-0.3522 wibracje zmniejsz moc 
+-0.3522 wibracje zmniejsz wibracje 
+-0.1761 wibracje zwiększ jasność 
+-0.1249 wibracji </s> <s> 
+-0.3522 wibracji na dwa 
+-0.3522 wibracji na dziewięć 
+-0.3979 wibracji włącz </s> 
+-0.3979 wibracji włącz włączyć 
+-0.0580 wibracji włączyć wyłącz 
+-99.9990 wibracji zgaś wszystkie 
+-99.9990 wibracji zmień moc 
+-0.1761 włącz </s> <s> 
+-99.9990 włącz diody kostko 
+-0.0969 włącz maksymalne wibracje 
+-0.0969 włącz minimalne wibracje 
+-0.1249 włącz roboty wyłącz 
+-0.2341 włącz wibracje wezwij 
+-0.4771 włącz wibracje wyłącz 
+-99.9990 włącz włączyć wszystkie 
+-0.1761 włącz włączyć wyłącz 
+-99.9990 włącz wszystkie roboty 
+-0.1249 włącz wyświetlacz zagraj 
+-99.9990 włączyć wszystkie wykonać 
+-0.4771 włączyć wyłącz wyłączyć 
+-0.2341 włączyć wyłącz wynik 
+-99.9990 wszystkie </s> <s> 
+-0.5441 wszystkie diody </s> 
+-0.2430 wszystkie diody zgaś 
+-99.9990 wszystkie diody zwiększ 
+-99.9990 wszystkie roboty włącz 
+-99.9990 wszystkie roboty zadzwoń 
+-0.0580 wszystkie włącz wibracje 
+-99.9990 wszystkie wykonać wykonaj 
+-99.9990 wycisz się wyciszcie 
+-99.9990 wyciszcie się wyłącz 
+-99.9990 wykonać wykonaj wyłącz 
+-0.1249 wykonaj cztery ostatnie 
+-0.1249 wykonaj pięć ostatnich 
+-0.1249 wykonaj sześć ostatnich 
+-99.9990 wykonaj wyłącz wyłączyć 
+-99.9990 wyłącz głos </s> 
+-99.9990 wyłącz głośność zawibruj 
+-0.1249 wyłącz kostkę wyłącz 
+-0.1249 wyłącz pudełka </s> 
+-0.1249 wyłącz rękaw wyłącz 
+-99.9990 wyłącz wibracje </s> 
+-0.1249 wyłącz wibracje włącz 
+-99.9990 wyłącz wszystkie roboty 
+-99.9990 wyłącz wyłączyć wynik 
+-0.0969 wyłącz wyłączyć zapal 
+-0.0580 wyłącz wynik wynosić 
+-99.9990 wyłącz wyświetlacz </s> 
+-0.1761 wyłącz wyświetlacz włącz 
+-0.0580 wyłączyć wszystkie włącz 
+-99.9990 wyłączyć wynik wynosi 
+-0.0969 wyłączyć zapal zapalić 
+-99.9990 wynik </s> <s> 
+-0.3310 wynik dodawania ile 
+-0.3310 wynik dodawania liczby 
+-0.0669 wynik odejmowania dziesięć 
+-99.9990 wynik wynosi wynosić 
+-0.0580 wynik wynosić zapalić 
+-0.0580 wynosi wyłączyć wszystkie 
+-99.9990 wynosi wynosić wyświetl 
+-99.9990 wynosić wyświetl wyświetlanie 
+-0.0580 wynosić zapalić zatrzymać 
+-0.1249 wyświetl smutną buzię 
+-0.1249 wyświetl uśmiechniętą buzię 
+-99.9990 wyświetl wyświetlanie </s> 
+-99.9990 wyświetlacz </s> <s> 
+-0.1761 wyświetlacz włącz wyświetlacz 
+-0.1249 wyświetlacz zagraj muzyczkę 
+-99.9990 wyświetlanie </s> <s> 
+-99.9990 wyświetlić zagraj zamiaucz 
+-99.9990 zadzwoń po pomoc 
+-0.1249 zagraj dźwięk zaszczekaj 
+-0.1249 zagraj muzyczkę zagraj 
+-99.9990 zagraj zamiaucz zapal 
+-0.1249 zamiaucz przedstaw się 
+-99.9990 zamiaucz zapal zapalić 
+-99.9990 zapal </s> <s> 
+-0.0512 zapal czerwone diody 
+-0.0969 zapal diody zapal 
+-0.0969 zapal niebieskie diody 
+-99.9990 zapal się rękawie 
+-99.9990 zapal się zgaś 
+-0.0969 zapal wszystkie diody 
+-0.0669 zapal wynosi wyłączyć 
+-99.9990 zapal zapalić zaszczekaj 
+-0.0969 zapal zapalić zatrzymaj 
+-0.0969 zapal zielone diody 
+-99.9990 zapalić zaszczekaj zatrzymaj 
+-0.0969 zapalić zatrzymaj zatrzymać 
+-0.0580 zapalić zatrzymać zgaś 
+-0.1249 zapalić zielone diody 
+-0.1249 zaszczekaj zamiaucz przedstaw 
+-99.9990 zaszczekaj zatrzymaj zatrzymać 
+-99.9990 zaświećcie się wyłącz 
+-0.3979 zatrzymaj się </s> 
+-0.3979 zatrzymaj się zmień 
+-99.9990 zatrzymaj zapal </s> 
+-0.0669 zatrzymaj zapal wynosi 
+-0.0792 zatrzymaj zatrzymać zgaszenie 
+-0.0792 zatrzymać zgaszenie zgaś 
+-0.0580 zatrzymać zgaś zielony 
+-99.9990 zawibruj uśmiechnij się 
+-0.1249 zdziwioną twarz wyłącz 
+-0.0580 zgaszenie zatrzymaj zapal 
+-0.0792 zgaszenie zgaś zielone 
+-0.0969 zgaś czerwone diody 
+-0.0969 zgaś diody zgaś 
+-99.9990 zgaś kostkę zgaś 
+-99.9990 zgaś niebieskie </s> 
+-0.1249 zgaś niebieskie diody 
+-99.9990 zgaś rękaw rękawie 
+-99.9990 zgaś wszystkie </s> 
+-0.1249 zgaś wszystkie diody 
+-0.0792 zgaś zielone zielony 
+-0.0580 zgaś zielony zmniejsz 
+-0.0969 zgaś żółte diody 
+-0.0969 zielone </s> <s> 
+-0.1761 zielone czerwony czerwone 
+-0.6021 zielone diody </s> 
+-0.4260 zielone diody wezwij 
+-0.6021 zielone diody zapal 
+-0.1761 zielone jeden dwa 
+-0.0580 zielone zgaszenie zatrzymaj 
+-0.0792 zielone zielony zmiana 
+-0.1761 zielony </s> <s> 
+-0.1761 zielony zapal diody 
+-0.3979 zielony zielone </s> 
+-0.3979 zielony zielone jeden 
+-0.0792 zielony zmiana zmniejsz 
+-0.0669 zielony zmniejsz </s> 
+-99.9990 zielony zmniejsz ile 
+-99.9990 zmiana </s> <s> 
+-0.1249 zmiana diod niebieski 
+-0.0969 zmiana światełko zielone 
+-0.0580 zmiana zielone zgaszenie 
+-0.0792 zmiana zmniejsz zmienić 
+-0.0792 zmniejsz </s> <s> 
+-99.9990 zmniejsz ile to 
+-0.0969 zmniejsz jasność świecenia 
+-0.3522 zmniejsz moc świecenia 
+-0.3522 zmniejsz moc wibracji 
+-0.0969 zmniejsz wibracje zmniejsz 
+-0.0792 zmniejsz zmienić zmień 
+-0.0969 zmienić światła pomarańczowy 
+-0.0580 zmienić zmiana zielone 
+-0.0792 zmienić zmień zwiększ 
+-99.9990 zmień kolor </s> 
+-0.0280 zmień kolor diod 
+-0.0512 zmień moc wibracji 
+-0.0969 zmień światło na 
+-0.0969 zmień wibracje na 
+-0.3979 zmień zwiększ </s> 
+-99.9990 zmień zwiększ zapal 
+-99.9990 zmień zwiększ zmień 
+-99.9990 zmień zwiększ żebyś 
+-0.1761 zwiększ </s> <s> 
+-0.3522 zwiększ jasność świecenia 
+-0.3522 zwiększ jasność zwiększ 
+-0.0969 zwiększ wibracje zmniejsz 
+-99.9990 zwiększ zapal zielone 
+-0.0580 zwiększ zmienić zmiana 
+-99.9990 zwiększ zmień światło 
+-99.9990 zwiększ żebyś żółte 
+-0.1249 żebyś teraz powtórzył 
+-99.9990 żebyś żółte żółty 
+-0.3010 żółte diody </s> 
+-99.9990 żółte diody zmień 
+-99.9990 żółte diody zwiększ 
+-0.0580 żółte zwiększ zmienić 
+-99.9990 żółte żółty </s> 
+-0.1249 żółty </s> <s> 
+-99.9990 żółty stop zatrzymaj 
+-99.9990 żółty zmień kolor 
+
+\end\
